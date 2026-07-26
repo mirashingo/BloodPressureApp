@@ -1,0 +1,87 @@
+# =========================================================
+# BloodPressureApp Git Attributes
+# =========================================================
+
+# Auto detect text files and normalize to LF in repository
+* text=auto eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Unix scripts
+*.sh text eol=lf
+
+# Source code
+*.dart text
+*.kt text
+*.kts text
+*.java text
+*.swift text
+*.m text
+*.mm text
+*.xml text
+*.gradle text
+*.yaml text
+*.yml text
+*.json text
+*.md text
+*.txt text
+*.html text
+*.css text
+*.scss text
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.svg text
+*.ico binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+
+# Audio
+*.mp3 binary
+*.wav binary
+*.aac binary
+*.m4a binary
+
+# Video
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.webm binary
+
+# Documents
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Archives
+*.zip binary
+*.7z binary
+*.rar binary
+*.gz binary
+*.tar binary
+
+# Database
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+
+# Figma exports remain binary
+*.fig binary
+
+# Prevent merge conflicts in lock files (keep standard text merge)
+pubspec.lock text
