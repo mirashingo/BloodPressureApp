@@ -915,15 +915,15 @@ Riverpod
 # 関連ドキュメント
 
 -   01_Requirements/FeatureIndex.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
--   01_Requirements/Features/F002_HomeDashboard.md
--   01_Requirements/Features/F003_History.md
--   01_Requirements/Features/F004_Graph.md
--   01_Requirements/Features/F005_Statistics.md
--   01_Requirements/Features/F006_Reminder.md
--   01_Requirements/Features/F007_Export.md
--   01_Requirements/Features/F008_Backup.md
--   01_Requirements/Features/F009_Settings.md
+-   01_Requirements/F001_BloodPressureRecording.md
+-   01_Requirements/F002_HomeDashboard.md
+-   01_Requirements/F003_History.md
+-   01_Requirements/F004_Graph.md
+-   01_Requirements/F005_Statistics.md
+-   01_Requirements/F006_Reminder.md
+-   01_Requirements/F007_Export.md
+-   01_Requirements/F008_Backup.md
+-   01_Requirements/F009_Settings.md
 -   03_Screens/
 -   04_DesignSystem/
 -   06_Flutter/

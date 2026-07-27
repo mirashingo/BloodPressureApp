@@ -243,14 +243,14 @@ Screen内で禁止
 Widget分類
 
 
-Core Widget
+Design System Widget
 
 Feature Widget
 
 Domain Widget
 
 
-Core Widget
+Design System Widget
 
 -   AppPrimaryButton
 -   AppTextField
@@ -696,10 +696,17 @@ lib/
 │  ├─ analytics/
 │  ├─ logging/
 │  ├─ security/
-│  ├─ widgets/
 │  ├─ extensions/
 │  ├─ utils/
 │  └─ constants/
+│
+├─ design_system/
+│  ├─ colors/
+│  ├─ typography/
+│  ├─ spacing/
+│  ├─ theme/
+│  ├─ tokens/
+│  └─ components/
 │
 ├─ features/
 │  ├─ recording/
@@ -806,9 +813,9 @@ UseCase、Shared Domain、Event、
 
 sharedは
 
-複数Featureで意味が共通する
+複数Featureで共有するが、
 
-Domain ObjectまたはPresentation部品に限定する。
+Design Systemには属さない共通処理に限定する。
 
 例
 
@@ -818,6 +825,16 @@ shared/domain/value_objects/date_range.dart
 shared/domain/value_objects/record_id.dart
 
 shared/presentation/widgets/section_header.dart
+
+Extension、Formatter、Validator、Utilityも、
+
+複数Featureで意味が共通し、
+
+Design Systemに属さない場合のみsharedへ置く。
+
+Color、Typography、Spacing、Theme、Design Token、
+
+再利用可能なUI Componentはdesign_systemへ置く。
 
 
 何でもsharedへ入れない。
@@ -1905,7 +1922,7 @@ Accessibilityを後付けにしない。
 -   Accessible Error
 -   Screen Reader Announcement
 
-Core Widgetへ
+Design System Widgetへ
 
 共通Accessibility処理を集約する。
 
@@ -2320,7 +2337,7 @@ F203 Natural Language Search
 -   00_Project/Vision.md
 -   00_Project/Roadmap_日本語版.md
 -   01_Requirements/FeatureIndex.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
+-   01_Requirements/F001_BloodPressureRecording.md
 -   02_UX/UserFlow.md
 -   02_UX/Navigation.md
 -   02_UX/ScreenList.md

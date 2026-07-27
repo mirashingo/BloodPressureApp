@@ -2328,7 +2328,7 @@ F203 Natural Language Search
 -   00_Project/Vision.md
 -   00_Project/Roadmap_日本語版.md
 -   01_Requirements/FeatureIndex.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
+-   01_Requirements/F001_BloodPressureRecording.md
 -   02_UX/Navigation.md
 -   03_Screens/Home.md
 -   03_Screens/Input.md

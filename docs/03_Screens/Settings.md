@@ -1097,11 +1097,11 @@ F107 Multiple Measurement Aggregation
 -   03_Screens/Input.md
 -   03_Screens/History.md
 -   03_Screens/Graph.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
--   01_Requirements/Features/F006_Reminder.md
--   01_Requirements/Features/F007_Export.md
--   01_Requirements/Features/F008_Backup.md
--   01_Requirements/Features/F009_Settings.md
+-   01_Requirements/F001_BloodPressureRecording.md
+-   01_Requirements/F006_Reminder.md
+-   01_Requirements/F007_Export.md
+-   01_Requirements/F008_Backup.md
+-   01_Requirements/F009_Settings.md
 -   04_DesignSystem/
 -   06_Flutter/
 

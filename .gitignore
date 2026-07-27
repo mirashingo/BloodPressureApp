@@ -12,16 +12,9 @@ build/
 .flutter-plugins
 .flutter-plugins-dependencies
 .flutter-versions
-.metadata
 
 # Coverage
 coverage/
-
-# Generated code
-*.g.dart
-*.freezed.dart
-*.gr.dart
-*.mocks.dart
 
 # IDE
 .idea/
@@ -55,7 +48,6 @@ Desktop.ini
 # Firebase
 google-services.json
 GoogleService-Info.plist
-firebase_options.dart
 
 # Local configuration
 local.properties
@@ -67,7 +59,7 @@ local.properties
 # Fastlane
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots
+fastlane/screenshots/
 
 # AI / Codex
 .codex/
@@ -92,3 +84,9 @@ golden_failures/
 !AGENTS.md
 !README.md
 !START_HERE.md
+
+# ==========================================
+# AI Review Workspace
+# ==========================================
+.review/*
+!.review/README.md

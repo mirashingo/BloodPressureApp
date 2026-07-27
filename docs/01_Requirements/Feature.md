@@ -12,7 +12,7 @@
 
 本ドキュメントは、BloodPressureAppで提供する機能の全体像を定義するための機能概要書です。
 
-機能の詳細仕様は、`FeatureIndex.md` および `Features/` フォルダ内の個別機能仕様書で管理します。
+機能の詳細仕様は、`FeatureIndex.md` および同じディレクトリ内の個別機能仕様書で管理します。
 
 機能は以下の3段階に分類します。
 
@@ -65,7 +65,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - オフラインで保存できる
 - 保存直後にホーム、履歴、グラフへ反映される
 
-詳細：`Features/F001_BloodPressureRecording.md`
+詳細：`F001_BloodPressureRecording.md`
 
 ---
 
@@ -84,7 +84,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 週間概要
 - 測定忘れを防ぐ案内
 
-詳細：`Features/F002_HomeDashboard.md`
+詳細：`F002_HomeDashboard.md`
 
 ---
 
@@ -104,7 +104,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 時間帯による絞り込み
 - メモ・タグの表示
 
-詳細：`Features/F003_History.md`
+詳細：`F003_History.md`
 
 ---
 
@@ -130,7 +130,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 朝・夜などの時間帯別データ
 - 平均値
 
-詳細：`Features/F004_Graph.md`
+詳細：`F004_Graph.md`
 
 ---
 
@@ -150,7 +150,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 朝・夜別の平均
 - データの変動幅
 
-詳細：`Features/F005_Statistics.md`
+詳細：`F005_Statistics.md`
 
 ---
 
@@ -169,7 +169,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 一時停止
 - 通知から入力画面を直接開く
 
-詳細：`Features/F006_Reminder.md`
+詳細：`F006_Reminder.md`
 
 ---
 
@@ -188,7 +188,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 医師が確認しやすいレイアウト
 - 血圧、脈拍、日時、メモの出力
 
-詳細：`Features/F007_Export.md`
+詳細：`F007_Export.md`
 
 ---
 
@@ -206,7 +206,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - 復元前の確認
 - 将来的なクラウドバックアップへの対応
 
-詳細：`Features/F008_Backup.md`
+詳細：`F008_Backup.md`
 
 ---
 
@@ -227,7 +227,7 @@ BloodPressureAppは、血圧を記録する人が毎日気持ちよく使える�
 - プライバシー情報
 - アプリ情報
 
-詳細：`Features/F009_Settings.md`
+詳細：`F009_Settings.md`
 
 ---
 
@@ -375,8 +375,8 @@ BloodPressureAppは以下を行いません。
 - `../00_Project/Vision.md`
 - `../00_Project/Roadmap.md`
 - `FeatureIndex.md`
-- `Requirements.md`
-- `Features/F001_BloodPressureRecording.md`
+- `Feature.md`
+- `F001_BloodPressureRecording.md`
 - `../02_UX/UserFlow.md`
 - `../02_UX/ScreenList.md`
 - `../06_Flutter/Architecture.md`

@@ -11,7 +11,7 @@
 
 本ドキュメントは、BloodPressureAppで計画・実装する機能を一覧管理するための機能インデックスです。
 
-各機能には一意の機能IDを割り当て、詳細仕様は `Features/` フォルダ内の個別ファイルで管理します。
+各機能には一意の機能IDを割り当て、詳細仕様は同じディレクトリ内の個別ファイルで管理します。
 
 このインデックスは、次の用途で使用します。
 
@@ -32,17 +32,16 @@
 docs/
 └── 01_Requirements/
     ├── FeatureIndex.md
-    ├── Requirements.md
-    └── Features/
-        ├── F001_BloodPressureRecording.md
-        ├── F002_HomeDashboard.md
-        ├── F003_History.md
-        ├── F004_Graph.md
-        ├── F005_Statistics.md
-        ├── F006_Reminder.md
-        ├── F007_Export.md
-        ├── F008_Backup.md
-        └── F009_Settings.md
+    ├── Feature.md
+    ├── F001_BloodPressureRecording.md
+    ├── F002_HomeDashboard.md
+    ├── F003_History.md
+    ├── F004_Graph.md
+    ├── F005_Statistics.md
+    ├── F006_Reminder.md
+    ├── F007_Export.md
+    ├── F008_Backup.md
+    └── F009_Settings.md
 ```
 
 各機能仕様書には、原則として次の項目を記載します。
@@ -98,28 +97,28 @@ docs/
 
 | 機能ID | 機能名 | 概要 | 優先度 | ステータス | 詳細仕様 |
 |---|---|---|---|---|---|
-| F001 | 血圧記録 | 最高血圧、最低血圧、脈拍、測定日時、メモなどを短時間で記録する | P0 | 仕様作成中 | `Features/F001_BloodPressureRecording.md` |
-| F002 | ホームダッシュボード | 最新記録、本日の記録、クイック入力、最近の傾向を表示する | P0 | 未着手 | `Features/F002_HomeDashboard.md` |
-| F003 | 履歴 | 保存された血圧記録を時系列で閲覧、編集、削除する | P0 | 未着手 | `Features/F003_History.md` |
-| F004 | グラフ | 血圧と脈拍の推移を期間別に可視化する | P0 | 未着手 | `Features/F004_Graph.md` |
-| F005 | 統計 | 平均、最大、最小、測定回数などを集計する | P1 | 未着手 | `Features/F005_Statistics.md` |
+| F001 | 血圧記録 | 最高血圧、最低血圧、脈拍、測定日時、メモなどを短時間で記録する | P0 | 仕様作成中 | `F001_BloodPressureRecording.md` |
+| F002 | ホームダッシュボード | 最新記録、本日の記録、クイック入力、最近の傾向を表示する | P0 | 未着手 | `F002_HomeDashboard.md` |
+| F003 | 履歴 | 保存された血圧記録を時系列で閲覧、編集、削除する | P0 | 未着手 | `F003_History.md` |
+| F004 | グラフ | 血圧と脈拍の推移を期間別に可視化する | P0 | 未着手 | `F004_Graph.md` |
+| F005 | 統計 | 平均、最大、最小、測定回数などを集計する | P1 | 未着手 | `F005_Statistics.md` |
 
 ## 5.2 継続支援機能
 
 | 機能ID | 機能名 | 概要 | 優先度 | ステータス | 詳細仕様 |
 |---|---|---|---|---|---|
-| F006 | 測定リマインダー | 指定した時刻に血圧測定を促す通知を表示する | P1 | 未着手 | `Features/F006_Reminder.md` |
-| F010 | 測定継続状況 | 測定日数や継続状況を、過度な競争性を持たせず表示する | P2 | 未着手 | `Features/F010_RecordingContinuity.md` |
-| F011 | 測定時間帯分類 | 記録を朝、昼、夜などの時間帯に分類する | P1 | 未着手 | `Features/F011_TimePeriodClassification.md` |
+| F006 | 測定リマインダー | 指定した時刻に血圧測定を促す通知を表示する | P1 | 未着手 | `F006_Reminder.md` |
+| F010 | 測定継続状況 | 測定日数や継続状況を、過度な競争性を持たせず表示する | P2 | 未着手 | 未作成 |
+| F011 | 測定時間帯分類 | 記録を朝、昼、夜などの時間帯に分類する | P1 | 未着手 | 未作成 |
 
 ## 5.3 データ活用・管理機能
 
 | 機能ID | 機能名 | 概要 | 優先度 | ステータス | 詳細仕様 |
 |---|---|---|---|---|---|
-| F007 | PDF・CSV出力 | 通院時の共有や個人保管に使用できる形式で記録を出力する | P1 | 未着手 | `Features/F007_Export.md` |
-| F008 | バックアップ・復元 | アプリ内データをバックアップし、必要時に復元する | P1 | 未着手 | `Features/F008_Backup.md` |
-| F009 | 設定 | 表示、通知、文字サイズ、バックアップなどを管理する | P1 | 未着手 | `Features/F009_Settings.md` |
-| F012 | 記録検索・絞り込み | 日付、時間帯、タグなどから記録を絞り込む | P2 | 未着手 | `Features/F012_RecordFilter.md` |
+| F007 | PDF・CSV出力 | 通院時の共有や個人保管に使用できる形式で記録を出力する | P1 | 未着手 | `F007_Export.md` |
+| F008 | バックアップ・復元 | アプリ内データをバックアップし、必要時に復元する | P1 | 未着手 | `F008_Backup.md` |
+| F009 | 設定 | 表示、通知、文字サイズ、バックアップなどを管理する | P1 | 未着手 | `F009_Settings.md` |
+| F012 | 記録検索・絞り込み | 日付、時間帯、タグなどから記録を絞り込む | P2 | 未着手 | 未作成 |
 
 ---
 
@@ -127,13 +126,13 @@ docs/
 
 | 機能ID | 機能名 | 概要 | 優先度 | ステータス | 詳細仕様 |
 |---|---|---|---|---|---|
-| F101 | 週間・月間要約 | 最近の測定傾向や継続状況を分かりやすく要約する | P2 | 未着手 | `Features/F101_PeriodSummary.md` |
-| F102 | AI傾向要約 | 個人の過去データをもとに変化を文章で要約する。医療診断は行わない | P2 | 未着手 | `Features/F102_AITrendSummary.md` |
-| F103 | 健康メモ | 服薬、睡眠、運動、食事、体調などの補足情報を記録する | P2 | 未着手 | `Features/F103_HealthNotes.md` |
-| F104 | 複数プロフィール | 家族など複数人の記録を分けて管理する | P2 | 未着手 | `Features/F104_MultipleProfiles.md` |
-| F105 | タグ管理 | ユーザーが記録に任意のタグを付けて整理する | P2 | 未着手 | `Features/F105_TagManagement.md` |
-| F106 | 表示モード切替 | 標準、大文字、大ボタンなど利用者に合わせてUIを変更する | P2 | 未着手 | `Features/F106_DisplayModes.md` |
-| F107 | 複数回測定の集約 | 連続して測定した複数データから平均値または採用値を選択する | P2 | 未着手 | `Features/F107_MultipleMeasurementAggregation.md` |
+| F101 | 週間・月間要約 | 最近の測定傾向や継続状況を分かりやすく要約する | P2 | 未着手 | 未作成 |
+| F102 | AI傾向要約 | 個人の過去データをもとに変化を文章で要約する。医療診断は行わない | P2 | 未着手 | 未作成 |
+| F103 | 健康メモ | 服薬、睡眠、運動、食事、体調などの補足情報を記録する | P2 | 未着手 | 未作成 |
+| F104 | 複数プロフィール | 家族など複数人の記録を分けて管理する | P2 | 未着手 | 未作成 |
+| F105 | タグ管理 | ユーザーが記録に任意のタグを付けて整理する | P2 | 未着手 | 未作成 |
+| F106 | 表示モード切替 | 標準、大文字、大ボタンなど利用者に合わせてUIを変更する | P2 | 未着手 | 未作成 |
+| F107 | 複数回測定の集約 | 連続して測定した複数データから平均値または採用値を選択する | P2 | 未着手 | 未作成 |
 
 ---
 
@@ -141,14 +140,14 @@ docs/
 
 | 機能ID | 機能名 | 概要 | 優先度 | ステータス | 詳細仕様 |
 |---|---|---|---|---|---|
-| F201 | Bluetooth血圧計連携 | 対応する血圧計から測定値を自動取得する | P3 | 保留 | `Features/F201_BluetoothMonitor.md` |
-| F202 | OCR入力 | 血圧計の表示画面を撮影し、数値を読み取る | P3 | 保留 | `Features/F202_OCRInput.md` |
-| F203 | 音声入力 | 音声で最高血圧、最低血圧、脈拍を入力する | P3 | 保留 | `Features/F203_VoiceInput.md` |
-| F204 | Apple Health連携 | Apple Healthとのデータ連携を行う | P3 | 保留 | `Features/F204_AppleHealth.md` |
-| F205 | Health Connect連携 | Android Health Connectとのデータ連携を行う | P3 | 保留 | `Features/F205_HealthConnect.md` |
-| F206 | スマートウォッチ連携 | 対応デバイスから記録や通知を利用する | P3 | 保留 | `Features/F206_SmartWatch.md` |
-| F207 | 医療機関向け共有 | 利用者の同意を前提として医療従事者と記録を共有する | P3 | 保留 | `Features/F207_ClinicalSharing.md` |
-| F208 | クラウド同期 | 複数端末間で記録を同期する | P3 | 保留 | `Features/F208_CloudSync.md` |
+| F201 | Bluetooth血圧計連携 | 対応する血圧計から測定値を自動取得する | P3 | 保留 | 未作成 |
+| F202 | OCR入力 | 血圧計の表示画面を撮影し、数値を読み取る | P3 | 保留 | 未作成 |
+| F203 | 音声入力 | 音声で最高血圧、最低血圧、脈拍を入力する | P3 | 保留 | 未作成 |
+| F204 | Apple Health連携 | Apple Healthとのデータ連携を行う | P3 | 保留 | 未作成 |
+| F205 | Health Connect連携 | Android Health Connectとのデータ連携を行う | P3 | 保留 | 未作成 |
+| F206 | スマートウォッチ連携 | 対応デバイスから記録や通知を利用する | P3 | 保留 | 未作成 |
+| F207 | 医療機関向け共有 | 利用者の同意を前提として医療従事者と記録を共有する | P3 | 保留 | 未作成 |
+| F208 | クラウド同期 | 複数端末間で記録を同期する | P3 | 保留 | 未作成 |
 
 ---
 
@@ -244,8 +243,8 @@ BloodPressureAppは、以下の行為を目的としません。
 
 - `../00_Project/Vision.md`
 - `../00_Project/Roadmap.md`
-- `Requirements.md`
-- `Features/F001_BloodPressureRecording.md`
+- `Feature.md`
+- `F001_BloodPressureRecording.md`
 - `../02_UX/UserFlow.md`
 - `../02_UX/Navigation.md`
 - `../02_UX/ScreenList.md`

@@ -67,6 +67,7 @@ sharedフォルダの肥大化、
 -   features
 -   app
 -   core
+-   design_system
 -   shared
 -   assets
 -   test
@@ -90,6 +91,7 @@ sharedフォルダの肥大化、
 -   Feature内部でLayerを分ける
 -   appはアプリ起動と全体構成を担当する
 -   coreはFeature非依存の基盤を担当する
+-   design_systemはColor、Typography、Spacing、Theme、Design Token、再利用可能なUI Componentを担当する
 -   sharedは複数Featureで意味が共通するものに限定する
 -   coreからfeaturesへ依存しない
 -   Feature間の直接参照を最小化する
@@ -181,8 +183,15 @@ lib/
 │  ├─ security/
 │  ├─ storage/
 │  ├─ time/
-│  ├─ validation/
-│  └─ widgets/
+│  └─ validation/
+│
+├─ design_system/
+│  ├─ colors/
+│  ├─ typography/
+│  ├─ spacing/
+│  ├─ theme/
+│  ├─ tokens/
+│  └─ components/
 │
 ├─ features/
 │  ├─ splash/
@@ -475,20 +484,69 @@ core/backup/
 
 ## core/widgets
 
+core/widgetsはDesign Systemの基本Component置き場として使用しない。
 
-core/widgets/
-├─ app_scaffold.dart
-├─ app_app_bar.dart
-├─ app_primary_button.dart
-├─ app_secondary_button.dart
-├─ app_text_field.dart
-├─ app_dialog.dart
-├─ app_bottom_sheet.dart
-├─ app_snack_bar.dart
-├─ app_empty_state.dart
-├─ app_error_state.dart
-├─ app_loading_state.dart
-└─ app_section_header.dart
+Color、Typography、Spacing、Theme、Design Token、
+
+および再利用可能なUI Componentは
+
+design_system配下へ配置する。
+
+core/widgetsを使用する場合は、
+
+Design Systemに属さない技術的な基盤Widgetに限定する。
+
+------------------------------------------------------------------------
+
+# design_system
+
+------------------------------------------------------------------------
+
+design_systemは、
+
+アプリ全体の見た目と操作感を一貫させるための
+
+Design System要素を配置する。
+
+対象は次のとおり。
+
+-   Color
+-   Typography
+-   Spacing
+-   Theme
+-   Design Token
+-   再利用可能なUI Component
+
+例
+
+
+design_system/
+├─ colors/
+│  └─ app_colors.dart
+├─ typography/
+│  └─ app_typography.dart
+├─ spacing/
+│  └─ app_spacing.dart
+├─ theme/
+│  ├─ app_theme.dart
+│  └─ color_scheme.dart
+├─ tokens/
+│  ├─ app_radius.dart
+│  ├─ app_duration.dart
+│  └─ app_elevation.dart
+└─ components/
+   ├─ app_scaffold.dart
+   ├─ app_app_bar.dart
+   ├─ app_primary_button.dart
+   ├─ app_secondary_button.dart
+   ├─ app_text_field.dart
+   ├─ app_dialog.dart
+   ├─ app_bottom_sheet.dart
+   ├─ app_snack_bar.dart
+   ├─ app_empty_state.dart
+   ├─ app_error_state.dart
+   ├─ app_loading_state.dart
+   └─ app_section_header.dart
 
 
 血圧固有Widgetは
@@ -842,11 +900,18 @@ core/aiへ置く。
 
 ## 目的
 
-複数Featureで
+sharedは、複数Featureで共有するが、
 
-意味と責務が本当に共通する
+Design Systemには属さない共通処理を配置する。
 
-Domain ObjectとUI部品を配置する。
+対象は次のとおり。
+
+-   複数Featureで共有するWidget
+-   Extension
+-   Formatter
+-   Validator
+-   Utility
+-   デザインシステムに属さない共通処理
 
 ------------------------------------------------------------------------
 
@@ -888,7 +953,7 @@ shared/presentation/
 
 Design Systemの基本Componentは
 
-core/widgetsを優先する。
+design_system/componentsを優先する。
 
 ------------------------------------------------------------------------
 
@@ -1031,6 +1096,7 @@ Productionのlib構造へ対応させる。
 test/
 ├─ app/
 ├─ core/
+├─ design_system/
 ├─ features/
 ├─ shared/
 ├─ fixtures/
@@ -1519,7 +1585,7 @@ AppPrimaryButton
 全Feature共通のDesign System Component。
 
 
-core/widgets/
+design_system/components/
 
 
 DateRange
@@ -1862,7 +1928,7 @@ Root READMEへ記載する。
 
 ## lib
 
--   app、core、features、sharedが分離されている
+-   app、core、design_system、features、sharedが分離されている
 -   main Entryが明確である
 -   Feature First構成である
 -   空フォルダを大量作成していない
@@ -1929,6 +1995,8 @@ Root READMEへ記載する。
 
 □ lib/featuresの責務を定義できる
 
+□ lib/design_systemの責務を定義できる
+
 □ lib/sharedの責務を定義できる
 
 □ Feature標準構成を定義できる
@@ -1949,7 +2017,7 @@ Root READMEへ記載する。
 
 □ core/database構成を定義できる
 
-□ core/widgets構成を定義できる
+□ design_system/components構成を定義できる
 
 □ assets構成を定義できる
 
@@ -2034,7 +2102,7 @@ F203 Natural Language Search
 -   00_Project/Vision.md
 -   00_Project/Roadmap_日本語版.md
 -   01_Requirements/FeatureIndex.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
+-   01_Requirements/F001_BloodPressureRecording.md
 -   02_UX/Navigation.md
 -   02_UX/ScreenList.md
 -   03_Screens/Home.md

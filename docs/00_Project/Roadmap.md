@@ -30,8 +30,8 @@ Flutter・Figma・AIを活用し、保守性・拡張性・AIとの親和性を�
 
 ## Phase 1：要件定義
 - FeatureIndex.md
-- Requirements.md
-- Features/F001〜
+- Feature.md
+- F001〜F009 個別機能仕様書
 
 目的：MVP・機能仕様・非機能要件を確定する。
 

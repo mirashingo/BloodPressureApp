@@ -238,10 +238,14 @@ lib/
 ├─ app/
 ├─ core/
 ├─ design_system/
+├─ shared/
 └─ features/
 ```
 
 実際のフォルダ構成は、`/docs/06_Flutter/` および `/docs/09_AI_Context/CODING_RULES.md` を正とします。
+
+`design_system/` はColor、Typography、Spacing、Theme、Design Token、再利用可能なUI Componentを配置します。
+`shared/` は複数Featureで共有するWidget、Extension、Formatter、Validator、Utility、デザインシステムに属さない共通処理を配置します。
 
 ### 9.2 Domain層
 

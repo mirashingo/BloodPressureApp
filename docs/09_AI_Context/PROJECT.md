@@ -1003,9 +1003,26 @@ AI Providerへ直接接続せず、
 lib/
 ├─ app/
 ├─ core/
+├─ design_system/
 ├─ features/
 ├─ shared/
 └─ main_*.dart
+
+
+design_system
+
+Color、Typography、Spacing、Theme、Design Token、
+
+再利用可能なUI Component。
+
+
+shared
+
+複数Featureで共有するWidget、Extension、Formatter、
+
+Validator、Utility、
+
+デザインシステムに属さない共通処理。
 
 
 Feature
@@ -2063,7 +2080,7 @@ F204 AI Memo Assistance
 -   00_Project/Roadmap.md
 -   00_Project/Roadmap_日本語版.md
 -   01_Requirements/FeatureIndex.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
+-   01_Requirements/F001_BloodPressureRecording.md
 -   02_UX/UserFlow.md
 -   02_UX/Navigation.md
 -   02_UX/ScreenList.md

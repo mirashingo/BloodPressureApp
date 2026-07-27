@@ -80,7 +80,7 @@ AI、Codex、開発者のいずれも、仕様を推測する前に既存ドキ�
 パッケージやバージョンの詳細は、以下を参照してください。
 
 - [`docs/06_Flutter/Packages.md`](./docs/06_Flutter/Packages.md)
-- [`pubspec.yaml`](./pubspec.yaml)
+- `pubspec.yaml`：Flutter初期化時に生成予定
 
 ---
 
@@ -94,6 +94,7 @@ AI、Codex、開発者のいずれも、仕様を推測する前に既存ドキ�
 lib/
   app/
   core/
+  design_system/
   shared/
   features/
     recording/
@@ -179,10 +180,19 @@ docs/00_Project/
 ```text
 docs/01_Requirements/
 ├─ Feature.md
-└─ Requirements.md
+├─ FeatureIndex.md
+├─ F001_BloodPressureRecording.md
+├─ F002_HomeDashboard.md
+├─ F003_History.md
+├─ F004_Graph.md
+├─ F005_Statistics.md
+├─ F006_Reminder.md
+├─ F007_Export.md
+├─ F008_Backup.md
+└─ F009_Settings.md
 ```
 
-機能要件、Acceptance Criteria、制約を定義します。
+機能方針、機能一覧、個別機能要件、Acceptance Criteria、制約を定義します。
 
 ### 7.3 UX
 

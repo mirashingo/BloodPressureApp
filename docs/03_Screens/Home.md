@@ -658,13 +658,13 @@ F107 Multiple Measurement Aggregation
 -   02_UX/UserFlow.md
 -   02_UX/Navigation.md
 -   02_UX/ScreenList.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
--   01_Requirements/Features/F002_HomeDashboard.md
--   01_Requirements/Features/F003_History.md
--   01_Requirements/Features/F004_Graph.md
--   01_Requirements/Features/F005_Statistics.md
--   01_Requirements/Features/F006_Reminder.md
--   01_Requirements/Features/F009_Settings.md
+-   01_Requirements/F001_BloodPressureRecording.md
+-   01_Requirements/F002_HomeDashboard.md
+-   01_Requirements/F003_History.md
+-   01_Requirements/F004_Graph.md
+-   01_Requirements/F005_Statistics.md
+-   01_Requirements/F006_Reminder.md
+-   01_Requirements/F009_Settings.md
 -   04_DesignSystem/
 -   06_Flutter/
 

@@ -2536,7 +2536,7 @@ F204 AI Memo Assistance
 ## 関連ドキュメント
 
 -   00_Project/Vision.md
--   01_Requirements/Features/F001_BloodPressureRecording.md
+-   01_Requirements/F001_BloodPressureRecording.md
 -   02_UX/UserFlow.md
 -   02_UX/Navigation.md
 -   02_UX/ScreenList.md
