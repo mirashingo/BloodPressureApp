@@ -1193,26 +1193,102 @@ AppColorScheme
 
 AppTheme
 
-ファイル例
+配置
 
+AppColorsはDesign Tokenとして次へ配置する。
 
-lib/
-└─ core/
-   └─ theme/
-      ├─ app_colors.dart
-      ├─ app_color_scheme.dart
-      ├─ app_theme.dart
-      └─ theme_provider.dart
+lib/design_system/tokens/app_colors.dart
+
+AppColorScheme、AppThemeはP3-04 Theme実装で扱う。
+
+### Flutter実装時の命名規則
+
+Flutter実装では、Light Theme用とDark Theme用のColor Tokenを、
+
+単一の`AppColors`クラスへ定義する。
+
+Light Theme用Tokenには`light`接頭辞を付ける。
+
+Dark Theme用Tokenには`dark`接頭辞を付ける。
+
+すべてのTokenについて、次の変換規則を適用する。
+
+Light:
+
+`AppColors.light{TokenName}`
+
+Dark:
+
+`AppColors.dark{TokenName}`
+
+`{TokenName}`は、Colors.mdに記載されたlowerCamelCaseのToken名の
+
+先頭をUpperCamelCase相当へ接続する。
+
+定数はlowerCamelCaseとする。
+
+想定形式は次のとおり。
+
+-   Class: `AppColors`
+-   Token: `AppColors.lightPrimary`
+-   Token: `AppColors.darkPrimary`
+
+### 命名例
+
+| Theme | Semantic Token | Flutter Token |
+|---|---|---|
+| Light | primary | AppColors.lightPrimary |
+| Dark | primary | AppColors.darkPrimary |
+| Light | primaryContainer | AppColors.lightPrimaryContainer |
+| Dark | primaryContainer | AppColors.darkPrimaryContainer |
+| Light | textPrimary | AppColors.lightTextPrimary |
+| Dark | textPrimary | AppColors.darkTextPrimary |
+| Light | surfaceVariant | AppColors.lightSurfaceVariant |
+| Dark | surfaceVariant | AppColors.darkSurfaceVariant |
+| Light | chartSystolic | AppColors.lightChartSystolic |
+| Dark | chartSystolic | AppColors.darkChartSystolic |
+| Light | chartDiastolic | AppColors.lightChartDiastolic |
+| Dark | chartDiastolic | AppColors.darkChartDiastolic |
 
 
 実装方針
 
+-   Color Tokenは`AppColors`へ定義する
+-   Light Theme用とDark Theme用を同一クラス内で接頭辞により区別する
+-   ThemeData、ColorScheme、TextThemeへの接続はP3-04で行う
 -   ThemeDataを使用する
 -   ColorSchemeを基本とする
 -   独自色はThemeExtensionで管理する
 -   BuildContext経由で色を取得する
 -   Widget内へ固定色を直接記述しない
 -   Riverpodでテーマ設定を管理する
+
+### Flutter実装時の禁止事項
+
+-   Light/Darkで同名のDart定数を作らない
+-   `primaryLight` / `primaryDark` の後置形式を使用しない
+-   `AppLightColors` / `AppDarkColors` へクラス分割しない
+-   Token名を省略しない
+-   Colors.mdにないColor Tokenを追加しない
+-   HEX値を変更しない
+
+### Flutter実装時の受け入れ条件
+
+□ `lib/design_system/tokens/app_colors.dart`へ配置されている
+
+□ `AppColors`クラスへLight Theme用とDark Theme用のColor Tokenが定義されている
+
+□ Light Theme用Tokenが`light{TokenName}`形式で定義されている
+
+□ Dark Theme用Tokenが`dark{TokenName}`形式で定義されている
+
+□ Colors.mdのToken名とHEX値が変更されていない
+
+□ Colors.mdに存在しないColor Tokenが追加されていない
+
+□ `primaryLight` / `primaryDark` の後置形式を使用していない
+
+□ `AppLightColors` / `AppDarkColors` へクラス分割していない
 
 ------------------------------------------------------------------------
 

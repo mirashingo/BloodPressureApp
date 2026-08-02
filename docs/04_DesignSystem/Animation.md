@@ -1604,15 +1604,13 @@ Motion/Data/GraphUpdate
 ## ファイル構成
 
 
-lib/
-└─ core/
-   └─ motion/
-      ├─ app_motion.dart
-      ├─ app_durations.dart
-      ├─ app_curves.dart
-      ├─ app_page_transitions.dart
-      ├─ reduce_motion_provider.dart
-      └─ motion_extensions.dart
+P3-03-06のAppDurationsは、次の配置を正式とする。
+
+lib/design_system/tokens/app_durations.dart
+
+P3-03-06ではDuration Tokenのみを実装する。
+
+Transition、Curve、Reduce Motion判定、Provider、Component接続は別タスクで扱う。
 
 
 ------------------------------------------------------------------------

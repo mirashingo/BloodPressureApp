@@ -1,0 +1,6 @@
+abstract final class AppRadius {
+  static const double radiusSmall = 8;
+  static const double radiusMedium = 12;
+  static const double radiusLarge = 16;
+  static const double radiusFull = 999;
+}
