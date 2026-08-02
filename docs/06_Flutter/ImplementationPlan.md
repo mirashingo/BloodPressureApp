@@ -36,9 +36,9 @@
   P3-03-06   AppDurations                    ☐
   P3-03-07   AppElevations                   ☐
   P3-03-08   AppComponentSizes               ☐
-  P3-04-01   ThemeData                       ☐
-  P3-04-02   ColorScheme                     ☐
-  P3-04-03   TextTheme                       ☐
+  P3-04-01   AppColorScheme                  ☐
+  P3-04-02   AppTextTheme                    ☐
+  P3-04-03   AppTheme（ThemeData）            ☐
   P3-04-04   ThemeExtension登録              ☐
   P3-04-05   MaterialAppへのTheme接続         ☐
   P3-05      Riverpod基盤                    ☐
@@ -223,15 +223,55 @@ P3-03-08 AppComponentSizes
 
 ## P3-04 : Theme
 
-P3-04では次のみ実装する。
+P3-04では、P3-03で作成済みのDesign Tokenを参照して次のみ実装する。
 
--   ThemeData
 -   ColorScheme
 -   TextTheme
+-   ThemeData
 -   ThemeExtension
 -   MaterialAppへの接続
 
-P3-04では新しいTokenを追加しない。
+P3-04では新しいColor、Typography、Spacing、Radius、Icon Size、Duration、Elevation、Component Size Tokenを追加しない。
+
+### P3-04実装順
+
+```text
+P3-04-01 AppColorScheme
+↓
+P3-04-02 AppTextTheme
+↓
+P3-04-03 AppTheme（ThemeData）
+↓
+P3-04-04 ThemeExtension登録
+↓
+P3-04-05 MaterialAppへのTheme接続
+```
+
+### P3-04-01 AppColorScheme
+
+対象ファイル:
+`lib/app/theme/app_color_scheme.dart`
+
+### P3-04-02 AppTextTheme
+
+対象ファイル:
+`lib/app/theme/app_text_theme.dart`
+
+### P3-04-03 AppTheme（ThemeData）
+
+対象ファイル:
+`lib/app/theme/app_theme.dart`
+
+### P3-04-04 ThemeExtension登録
+
+対象ファイル:
+-   `lib/design_system/extensions/` 配下
+-   登録処理は `lib/app/theme/` 配下
+
+### P3-04-05 MaterialAppへのTheme接続
+
+対象ファイル:
+`lib/app/app.dart`
 
 ------------------------------------------------------------------------
 

@@ -1263,6 +1263,132 @@ Dark:
 -   Widget内へ固定色を直接記述しない
 -   Riverpodでテーマ設定を管理する
 
+### Material 3 ColorScheme生成方針
+
+P3-04では、Material 3の`ColorScheme`を
+
+`ColorScheme.fromSeed`でLight / Darkそれぞれ生成し、
+
+`copyWith`で`AppColors`の正式Tokenを上書きする。
+
+Light:
+
+```dart
+ColorScheme.fromSeed(
+  seedColor: AppColors.lightPrimary,
+  brightness: Brightness.light,
+)
+```
+
+Dark:
+
+```dart
+ColorScheme.fromSeed(
+  seedColor: AppColors.darkPrimary,
+  brightness: Brightness.dark,
+)
+```
+
+`ColorScheme.fromSeed`で生成された値は、
+
+Material 3の役割を満たすための生成値として扱う。
+
+生成値を既存の正式Color Tokenとして扱わない。
+
+### AppColorsによるColorScheme上書き
+
+`AppColorScheme`では、次のColorScheme Roleを
+
+`AppColors`の正式Tokenで上書きする。
+
+Light / Darkの各Themeでは、それぞれ対応する
+
+`AppColors.light*` / `AppColors.dark*` を参照する。
+
+| ColorScheme Role | Light | Dark |
+|---|---|---|
+| primary | AppColors.lightPrimary | AppColors.darkPrimary |
+| onPrimary | AppColors.lightOnPrimary | AppColors.darkOnPrimary |
+| primaryContainer | AppColors.lightPrimaryContainer | AppColors.darkPrimaryContainer |
+| secondary | AppColors.lightSecondary | AppColors.darkSecondary |
+| tertiary | AppColors.lightAccent | AppColors.darkAccent |
+| surface | AppColors.lightSurface | AppColors.darkSurface |
+| surfaceContainerHighest | AppColors.lightSurfaceVariant | AppColors.darkSurfaceVariant |
+| error | AppColors.lightError | AppColors.darkError |
+| onSurface | AppColors.lightTextPrimary | AppColors.darkTextPrimary |
+| onSurfaceVariant | AppColors.lightTextSecondary | AppColors.darkTextSecondary |
+| outline | AppColors.lightBorderDefault | AppColors.darkBorderDefault |
+| outlineVariant | AppColors.lightDivider | AppColors.darkDivider |
+| surfaceTint | AppColors.lightPrimary | AppColors.darkPrimary |
+
+上記以外のColorScheme Roleへ、
+
+独自判断で既存Tokenを割り当てない。
+
+### ColorScheme生成値として扱うRole
+
+AppColors側に正式Tokenが存在しないColorScheme Roleは、
+
+`ColorScheme.fromSeed`が生成した値を使用する。
+
+対象例は次のとおり。
+
+-   onPrimaryContainer
+-   onSecondary
+-   secondaryContainer
+-   onSecondaryContainer
+-   onTertiary
+-   tertiaryContainer
+-   onTertiaryContainer
+-   onError
+-   errorContainer
+-   onErrorContainer
+-   inverseSurface
+-   onInverseSurface
+-   inversePrimary
+-   surfaceContainerLowest
+-   surfaceContainerLow
+-   surfaceContainer
+-   surfaceContainerHigh
+-   scrim
+-   shadow
+
+これらをP3-04で新しい`AppColors` Tokenとして追加しない。
+
+将来、Figmaとの完全一致が必要になった場合は、
+
+Colors.mdとAppColorsを先に更新する別設計タスクで
+
+明示Token化する。
+
+### Background Tokenの扱い
+
+Colors.mdには`background` Tokenが存在する。
+
+ただし、Material 3 ColorSchemeでは
+
+新しいSurface系Roleを優先する。
+
+`AppColors.lightBackground` / `AppColors.darkBackground` は削除しない。
+
+ただし、ColorSchemeのdeprecatedなbackground系Roleへ
+
+新規実装を依存させない。
+
+画面全体の背景への具体的な適用は、
+
+P3-04-03 AppThemeで扱う。
+
+### Chart Colorの境界
+
+次のChart ColorはColorSchemeへ割り当てない。
+
+-   chartSystolic
+-   chartDiastolic
+-   chartPulse
+
+これらはP3-04-04 ThemeExtension登録で扱う。
+
 ### Flutter実装時の禁止事項
 
 -   Light/Darkで同名のDart定数を作らない
@@ -1271,6 +1397,8 @@ Dark:
 -   Token名を省略しない
 -   Colors.mdにないColor Tokenを追加しない
 -   HEX値を変更しない
+-   Chart ColorをColorSchemeへ割り当てない
+-   fromSeedの生成結果を既存の正式Tokenとして扱わない
 
 ### Flutter実装時の受け入れ条件
 
@@ -1294,6 +1422,71 @@ Dark:
 
 ## Flutter Token例
 
+### AppChartColors
+
+`AppChartColors`は、ColorSchemeへ割り当てないグラフ系列色を
+
+ThemeExtensionとして扱うための拡張である。
+
+配置
+
+`lib/design_system/extensions/app_chart_colors.dart`
+
+対象フィールド
+
+-   systolic
+-   diastolic
+-   pulse
+
+Light Theme対応
+
+| Field | Design Token |
+|---|---|
+| systolic | AppColors.lightChartSystolic |
+| diastolic | AppColors.lightChartDiastolic |
+| pulse | AppColors.lightChartPulse |
+
+Dark Theme対応
+
+| Field | Design Token |
+|---|---|
+| systolic | AppColors.darkChartSystolic |
+| diastolic | AppColors.darkChartDiastolic |
+| pulse | AppColors.darkChartPulse |
+
+AppChartColorsへ含めないもの
+
+-   grid
+-   axis
+-   selectedPoint
+-   missingData
+-   success
+-   warning
+-   information
+-   時間帯カラー
+
+これらはP3-03-01で正式なAppColors Tokenとして実装されていないため、
+
+P3-04では新しいDesign Tokenを追加しない。
+
+将来必要になった場合は、Colors.mdとAppColorsを先に更新する別設計タスクで追加する。
+
+P3-04-04では、AppThemeのLight / Dark ThemeDataへ
+
+AppChartColorsをextensionsとして登録する。
+
+Lightでは、`AppColors.lightChartSystolic`、
+
+`AppColors.lightChartDiastolic`、
+
+`AppColors.lightChartPulse`を参照する。
+
+Darkでは、`AppColors.darkChartSystolic`、
+
+`AppColors.darkChartDiastolic`、
+
+`AppColors.darkChartPulse`を参照する。
+
 dart
 @immutable
 class AppChartColors extends ThemeExtension<AppChartColors> {
@@ -1301,30 +1494,22 @@ class AppChartColors extends ThemeExtension<AppChartColors> {
     required this.systolic,
     required this.diastolic,
     required this.pulse,
-    required this.grid,
-    required this.selectedPoint,
   });
 
   final Color systolic;
   final Color diastolic;
   final Color pulse;
-  final Color grid;
-  final Color selectedPoint;
 
   @override
   AppChartColors copyWith({
     Color? systolic,
     Color? diastolic,
     Color? pulse,
-    Color? grid,
-    Color? selectedPoint,
   }) {
     return AppChartColors(
       systolic: systolic ?? this.systolic,
       diastolic: diastolic ?? this.diastolic,
       pulse: pulse ?? this.pulse,
-      grid: grid ?? this.grid,
-      selectedPoint: selectedPoint ?? this.selectedPoint,
     );
   }
 
@@ -1341,9 +1526,6 @@ class AppChartColors extends ThemeExtension<AppChartColors> {
       systolic: Color.lerp(systolic, other.systolic, t)!,
       diastolic: Color.lerp(diastolic, other.diastolic, t)!,
       pulse: Color.lerp(pulse, other.pulse, t)!,
-      grid: Color.lerp(grid, other.grid, t)!,
-      selectedPoint:
-          Color.lerp(selectedPoint, other.selectedPoint, t)!,
     );
   }
 }
