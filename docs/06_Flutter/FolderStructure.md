@@ -91,7 +91,8 @@ sharedフォルダの肥大化、
 -   Feature内部でLayerを分ける
 -   appはアプリ起動と全体構成を担当する
 -   coreはFeature非依存の基盤を担当する
--   design_systemはColor、Typography、Spacing、Theme、Design Token、再利用可能なUI Componentを担当する
+-   design_systemはDesign Tokens、Theme Extensions、Reusable Components、Motion Tokens、Semantic Tokensを担当する
+-   ThemeData、ColorScheme、TextTheme、ThemeMode、Material 3接続はapp/themeが担当する
 -   sharedは複数Featureで意味が共通するものに限定する
 -   coreからfeaturesへ依存しない
 -   Feature間の直接参照を最小化する
@@ -186,11 +187,8 @@ lib/
 │  └─ validation/
 │
 ├─ design_system/
-│  ├─ colors/
-│  ├─ typography/
-│  ├─ spacing/
-│  ├─ theme/
 │  ├─ tokens/
+│  ├─ extensions/
 │  └─ components/
 │
 ├─ features/
@@ -513,27 +511,25 @@ Design System要素を配置する。
 -   Color
 -   Typography
 -   Spacing
--   Theme
 -   Design Token
+-   Theme Extension
 -   再利用可能なUI Component
 
 例
 
 
 design_system/
-├─ colors/
-│  └─ app_colors.dart
-├─ typography/
-│  └─ app_typography.dart
-├─ spacing/
-│  └─ app_spacing.dart
-├─ theme/
-│  ├─ app_theme.dart
-│  └─ color_scheme.dart
 ├─ tokens/
+│  ├─ app_colors.dart
+│  ├─ app_typography.dart
+│  ├─ app_spacing.dart
 │  ├─ app_radius.dart
-│  ├─ app_duration.dart
-│  └─ app_elevation.dart
+│  ├─ app_icon_sizes.dart
+│  ├─ app_durations.dart
+│  ├─ app_elevations.dart
+│  └─ app_component_sizes.dart
+├─ extensions/
+│  └─ app_theme_extension.dart
 └─ components/
    ├─ app_scaffold.dart
    ├─ app_app_bar.dart
@@ -552,6 +548,47 @@ design_system/
 血圧固有Widgetは
 
 coreへ置かない。
+
+## Theme配置と依存方向
+
+Themeの正式配置は `lib/app/theme/` とする。
+
+`lib/app/theme/` は、ThemeData、ColorScheme、TextTheme、ThemeMode、ThemeExtension登録、Material 3接続を担当する。
+
+`lib/app/theme/` には、Token定義、Reusable Components、Feature UIを置かない。
+
+`lib/design_system/` は、Design Tokens、Theme Extensions、Reusable Components、Motion Tokens、Semantic Tokensを担当する。
+
+`lib/design_system/` には、MaterialApp、ThemeData、ColorScheme生成、Router、Riverpod、Feature固有Widgetを置かない。
+
+正式な依存方向は次のとおりとする。
+
+```text
+app/theme
+  ↓
+design_system
+```
+
+`design_system` から `app/theme` への逆依存は禁止する。
+
+推奨フォルダ構成は次の責務で扱う。
+
+```text
+lib/
+  app/
+    theme/
+  design_system/
+    tokens/
+    extensions/
+    components/
+  features/
+  shared/
+  core/
+```
+
+P3-03ではDesign Tokensだけを実装し、ThemeDataは作らない。
+
+P3-04ではThemeだけを実装し、Tokenは追加しない。
 
 ------------------------------------------------------------------------
 

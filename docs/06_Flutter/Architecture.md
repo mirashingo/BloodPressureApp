@@ -701,11 +701,8 @@ lib/
 │  └─ constants/
 │
 ├─ design_system/
-│  ├─ colors/
-│  ├─ typography/
-│  ├─ spacing/
-│  ├─ theme/
 │  ├─ tokens/
+│  ├─ extensions/
 │  └─ components/
 │
 ├─ features/
@@ -832,7 +829,7 @@ Extension、Formatter、Validator、Utilityも、
 
 Design Systemに属さない場合のみsharedへ置く。
 
-Color、Typography、Spacing、Theme、Design Token、
+Color、Typography、Spacing、Design Token、Theme Extension、
 
 再利用可能なUI Componentはdesign_systemへ置く。
 
@@ -1794,6 +1791,155 @@ Widgetへ
 固定色、固定文字サイズ、
 
 任意Durationを直接記述しない。
+
+## Theme配置と責務
+
+Themeの正式配置は `lib/app/theme/` とする。
+
+`app/theme` は、アプリ全体のMaterial Theme接続を担当する。
+
+含めるものは次のとおり。
+
+-   ThemeData
+-   ColorScheme
+-   TextTheme
+-   ThemeMode
+-   ThemeExtension登録
+-   Material 3接続
+
+`app/theme` には、Token定義、Reusable Components、Feature UIを置かない。
+
+`design_system` は、アプリ全体の見た目と操作感を一貫させるためのDesign System要素を担当する。
+
+含めるものは次のとおり。
+
+-   Design Tokens
+-   Theme Extensions
+-   Reusable Components
+-   Motion Tokens
+-   Semantic Tokens
+
+`design_system` には、MaterialApp、ThemeData、ColorScheme生成、Router、Riverpod、Feature固有Widgetを置かない。
+
+## Theme依存方向
+
+正式な依存方向は次のとおりとする。
+
+```text
+app/theme
+  ↓
+design_system
+```
+
+`design_system` から `app/theme` への逆依存は禁止する。
+
+ThemeData、ColorScheme、TextThemeを組み立てる場合も、直接Color値、Spacing値、Radius値を書かず、必ずDesign Tokenを参照する。
+
+## Theme関連フォルダ
+
+推奨フォルダ構成は次の責務で扱う。
+
+```text
+lib/
+  app/
+    theme/
+  design_system/
+    tokens/
+    extensions/
+    components/
+  features/
+  shared/
+  core/
+```
+
+`lib/app/theme/` はMaterial Themeの組み立て場所とする。
+
+`lib/design_system/tokens/` は、Color、Typography、Spacing、Radius、Icon Size、Duration、Elevation、Component SizeなどのToken定義を置く。
+
+`lib/design_system/extensions/` は、ThemeExtensionとしてMaterial Themeへ登録するDesign System拡張を置く。
+
+`lib/design_system/components/` は、複数Featureで再利用するDesign System Componentを置く。
+
+## P3-03とP3-04の境界
+
+P3-03ではDesign Tokensだけを実装する。
+
+対象は次のとおり。
+
+-   AppColors
+-   AppTypography
+-   AppSpacing
+-   AppRadius
+-   AppIconSizes
+-   AppDurations
+-   AppElevations
+-   AppComponentSizes
+
+P3-03ではThemeDataを作らない。
+
+P3-04ではThemeだけを実装する。
+
+対象は次のとおり。
+
+-   AppTheme
+-   AppColorScheme
+-   AppTextTheme
+-   ThemeExtension登録
+-   MaterialApp接続
+
+P3-04ではTokenを追加しない。
+
+## App ShellからFeatureまでの起動・構築フロー
+
+App ShellからFeature表示までの起動・構築フローは次の順序で整理する。
+
+```text
+main.dart
+  →
+bootstrap.dart
+  →
+BloodPressureApp
+  →
+MaterialApp
+  →
+ThemeData適用
+  →
+Features表示
+```
+
+`main.dart` は `bootstrap.dart` を呼び出す。
+
+`bootstrap.dart` はアプリ起動処理を行い、`BloodPressureApp` を起動する。
+
+`BloodPressureApp` はMaterialAppを構築し、ThemeDataを適用してFeaturesを表示する。
+
+## App ShellからFeatureまでのコード依存方向
+
+ThemeとDesign Systemのコード依存方向は次のとおりとする。
+
+```text
+app/app.dart
+  →
+app/theme
+  →
+design_system/tokens
+
+features
+  →
+design_system/components
+  →
+design_system/tokens
+```
+
+`app/theme` はDesign Tokensを参照してThemeData、ColorScheme、TextThemeを組み立てる。
+
+FeaturesはDesign System Componentsを利用して画面を構成する。
+
+Design System ComponentsはDesign Tokensを参照して見た目と操作感を統一する。
+
+`design_system` から `app/theme` への逆依存は禁止する。
+
+`design_system` はFeaturesへ依存しない。
 
 ------------------------------------------------------------------------
 
