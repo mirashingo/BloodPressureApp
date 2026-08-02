@@ -255,17 +255,14 @@ app/
 │
 ├─ router/
 │  ├─ app_router.dart
-│  ├─ app_route.dart
 │  ├─ route_names.dart
-│  ├─ route_paths.dart
-│  ├─ route_redirect.dart
-│  └─ shell_scaffold.dart
+│  └─ route_paths.dart
 │
 └─ theme/
    ├─ app_theme.dart
-   ├─ app_theme_data.dart
-   ├─ app_theme_mode_provider.dart
-   └─ extensions/
+   ├─ app_color_scheme.dart
+   ├─ app_text_theme.dart
+   └─ app_theme_mode_provider.dart
 
 
 ------------------------------------------------------------------------
@@ -286,6 +283,10 @@ Feature Controllerを
 
 app.dartへ置かない。
 
+P3-06ではMaterialApp.routerへ移行し、Router Providerを参照する。
+
+Feature画面、Redirect、ShellRouteはP3-06では追加しない。
+
 ------------------------------------------------------------------------
 
 ## bootstrap.dart
@@ -299,6 +300,12 @@ app.dartへ置かない。
 -   Error Handler初期化
 -   runApp
 
+ProviderScopeはbootstrap.dartへ配置する。
+
+app.dart内部にはProviderScopeを置かない。
+
+Provider overrideを受け取る起動インターフェースはP3-05で扱う。
+
 ------------------------------------------------------------------------
 
 # core
@@ -309,11 +316,13 @@ app.dartへ置かない。
 
 全Featureから利用できる
 
-Feature非依存の技術基盤と共通UIを配置する。
+Feature非依存の技術基盤を配置する。
 
 coreは
 
 featuresをimportしない。
+
+coreへFeature固有Domain Rule、Feature固有UseCase、Screen、Feature固有Widget、Feature固有Repository Interfaceを置かない。
 
 ------------------------------------------------------------------------
 
@@ -658,6 +667,16 @@ Presentation、Application、Domain、Dataを
 
 必要な範囲で持つ。
 
+Featureディレクトリ名は `recording` とする。
+
+正式配置は `lib/features/recording/` とする。
+
+`record` はEntity、画面、Route Resource名として使用できる。
+
+`blood_pressure_recording` はFeatureディレクトリ名として採用しない。
+
+Featureディレクトリ名とRoute Resource名は同一である必要はない。
+
 ------------------------------------------------------------------------
 
 ## Feature標準構成
@@ -687,7 +706,7 @@ features/
    │  └─ exceptions/
    │
    └─ data/
-      ├─ datasources/
+      ├─ data_sources/
       ├─ dtos/
       ├─ mappers/
       ├─ repositories/
@@ -699,6 +718,66 @@ features/
 空フォルダを事前作成しない。
 
 必要になった時点で追加する。
+
+全FeatureのSkeletonを先に作成しない。
+
+------------------------------------------------------------------------
+
+## Provider配置規則
+
+App全体Providerは、責務に応じてlib/app配下へ配置する。
+
+-   Router Provider: lib/app/router/
+-   ThemeMode Provider: lib/app/theme/
+
+Infrastructure Providerは、技術基盤の責務に近いcore配下へ配置する。
+
+-   lib/core/database/
+-   lib/core/storage/
+-   lib/core/environment/
+-   その他、技術基盤の責務に近い場所
+
+Feature固有ProviderはFeature配下へ配置する。
+
+```text
+Repository Provider
+  → features/{feature}/data/providers/
+
+UseCase Provider
+  → features/{feature}/application/providers/
+
+Controller Provider
+  → features/{feature}/presentation/providers/
+
+Screen固有Provider
+  → presentation配下の責務に近い場所
+```
+
+Feature固有Providerをappやcoreへ集中させない。
+
+Provider用フォルダは、実Providerが必要になった時点で作成する。
+
+------------------------------------------------------------------------
+
+## Controller配置規則
+
+UI状態を持つControllerは次へ配置する。
+
+```text
+features/{feature}/presentation/controllers/
+```
+
+Controllerを公開するProviderは次へ配置する。
+
+```text
+features/{feature}/presentation/providers/
+```
+
+Controllerの責務は、UI状態、UseCase呼び出し、loading / data / failure状態の調整、UIへ返すResultまたはEventとする。
+
+ControllerではBuildContextの保持、context.go / context.push、Drift DAOの直接操作、ThemeやWidgetの生成、Domain Ruleの独自実装を行わない。
+
+pure Dart Application ServiceやUseCaseはapplication層へ置く。
 
 ------------------------------------------------------------------------
 
@@ -762,7 +841,7 @@ features/recording/
 │     └─ time_period_policy.dart
 │
 └─ data/
-   ├─ datasources/
+   ├─ data_sources/
    │  └─ blood_pressure_local_data_source.dart
    ├─ dtos/
    │  └─ blood_pressure_record_dto.dart
@@ -886,7 +965,7 @@ features/settings/
 │     └─ settings_repository.dart
 │
 └─ data/
-   ├─ datasources/
+   ├─ data_sources/
    └─ repositories/
 
 
@@ -1003,6 +1082,46 @@ design_system/componentsを優先する。
 -   Feature固有の命名を含まない
 -   変更理由が共通である
 -   依存方向を悪化させない
+
+sharedへ置かないもの:
+
+-   とりあえず再利用しそうなコード
+-   単一Featureだけで使うコード
+-   Design Token
+-   App Theme
+-   Database Infrastructure
+
+sharedを雑多フォルダにしないため、複数Featureで実利用が確認されてから移動する。
+
+------------------------------------------------------------------------
+
+## design_systemとの境界
+
+design_system:
+
+-   Design Token
+-   ThemeExtension
+-   見た目と操作性を統一する汎用Component
+-   業務データやFeature Providerへ依存しない
+
+shared:
+
+-   複数Featureにまたがる業務的意味を持つUI・処理
+
+features:
+
+-   Feature固有UI
+-   Feature固有状態
+-   Feature固有業務表示
+
+配置例:
+
+-   PrimaryButton → design_system/components/
+-   BloodPressureValue → 最初はFeature内。複数Featureで共有が確定した場合はsharedを検討する
+-   EmptyState → 完全汎用ならdesign_system。業務文言・操作を含む場合はFeature
+-   ErrorView → 完全汎用ならdesign_system。Feature固有復旧処理を含む場合はFeature
+-   DateRangeSelector → 複数Featureで共用ならshared
+-   RecordSummaryCard → 利用範囲確定まではFeature内
 
 ------------------------------------------------------------------------
 
@@ -1135,9 +1254,6 @@ test/
 ├─ core/
 ├─ design_system/
 ├─ features/
-├─ shared/
-├─ fixtures/
-├─ fakes/
 ├─ helpers/
 └─ golden/
 
@@ -1147,14 +1263,31 @@ test/
 ## Feature Test例
 
 
-test/features/recording/
-├─ presentation/
-│  ├─ screens/
-│  ├─ widgets/
-│  └─ controllers/
-├─ application/
+test/features/{feature}/
 ├─ domain/
-└─ data/
+├─ application/
+├─ data/
+└─ presentation/
+   ├─ screens/
+   ├─ widgets/
+   └─ controllers/
+
+
+lib構成と対応させる。
+
+Unit Testは対象レイヤーと同じ位置関係へ置く。
+
+Provider Testは対象ProviderのFeature配下へ置く。
+
+Widget Testはpresentation配下へ置く。
+
+Repository / DAO Testはdataまたはcore/database配下へ置く。
+
+Golden Testは対象Widgetに近い場所へ置く。
+
+Integration Testはintegration_test/で管理する。
+
+空のtestフォルダを先に大量作成しない。
 
 
 ------------------------------------------------------------------------

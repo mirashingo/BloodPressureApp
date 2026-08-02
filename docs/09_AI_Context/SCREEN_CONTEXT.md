@@ -260,6 +260,8 @@ History
 
 Graph
 
+Statistics
+
 Settings
 
 
@@ -282,6 +284,10 @@ History
 Graph
 
 期間変化の確認。
+
+Statistics
+
+期間統計と傾向の確認。
 
 Settings
 
@@ -2178,7 +2184,7 @@ onboarding
 
 home
 
-recordInput
+recordNew
 
 multipleMeasurement
 

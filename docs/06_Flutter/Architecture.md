@@ -126,6 +126,15 @@ Presentation → Application → Domain
 
 Data → Domain
 
+App → Features / Core / Design System / Shared
+
+Shared → Core / Design System
+
+Shared → Featureの公開Contract（必要な場合のみ）
+
+Design System → Flutter SDK
+
+Domain → Dart標準
 
 禁止
 
@@ -136,9 +145,33 @@ Domain → Drift
 
 Domain → Riverpod
 
+Domain → GoRouter
+
+Domain → Presentation
+
+Application → Presentation
+
+Application → Flutter UI
+
 Data → Presentation
 
+Data → FeatureのScreenやController
+
+Design System → Features
+
+Design System → app/theme
+
 Feature A Presentation → Feature B Data
+
+Feature A → Feature Bのdata内部
+
+Feature A → Feature Bのpresentation内部
+
+Controller → BuildContextの保持
+
+UseCase → Navigation処理
+
+循環依存は禁止する。
 
 
 ------------------------------------------------------------------------
@@ -148,32 +181,302 @@ Feature A Presentation → Feature B Data
 
 Feature
 ├─ presentation
-│  ├─ screen
-│  ├─ widget
-│  ├─ controller
-│  ├─ state
-│  └─ provider
+│  ├─ screens
+│  ├─ widgets
+│  ├─ controllers
+│  ├─ states
+│  └─ providers
 │
 ├─ application
-│  ├─ usecase
-│  ├─ service
-│  ├─ command
-│  └─ query
+│  ├─ usecases
+│  ├─ services
+│  ├─ commands
+│  └─ queries
 │
 ├─ domain
-│  ├─ entity
-│  ├─ value_object
-│  ├─ repository
-│  ├─ policy
-│  └─ exception
+│  ├─ entities
+│  ├─ value_objects
+│  ├─ repositories
+│  ├─ services
+│  ├─ policies
+│  └─ exceptions
 │
 └─ data
-   ├─ datasource
-   ├─ dto
-   ├─ mapper
-   ├─ repository
-   └─ database
+   ├─ data_sources
+   ├─ dtos
+   ├─ mappers
+   ├─ repositories
+   └─ providers
 
+
+------------------------------------------------------------------------
+
+## Feature First正式構成
+
+Featureは次の構成を基本とする。
+
+```text
+lib/features/{feature}/
+├─ domain/
+├─ application/
+├─ data/
+└─ presentation/
+```
+
+ただし、全FeatureのSkeletonや空フォルダを先に大量作成しない。
+
+必要なFeature・必要なファイルだけを、実装タスクに合わせて都度作成する。
+
+------------------------------------------------------------------------
+
+## レイヤー責務の正式定義
+
+domain:
+
+-   Entity
+-   Value Object
+-   Domain Rule
+-   Repository Interface
+-   Domain Service
+-   Domain Error
+-   Dart標準へだけ依存する純粋な業務ルール
+
+application:
+
+-   UseCase
+-   Application Service
+-   Command / Query
+-   Application DTO
+-   Result変換
+-   Transaction調整
+-   Domain処理のオーケストレーション
+
+data:
+
+-   Repository実装
+-   Local Data Source
+-   Drift DAOとの接続
+-   Persistence Model
+-   Mapper
+-   External Service
+-   Infrastructure Exceptionの変換
+
+presentation:
+
+-   Screen
+-   Widget
+-   Controller
+-   Provider
+-   View State
+-   UI Event
+-   Navigation起点
+-   AsyncValueによる表示状態
+
+------------------------------------------------------------------------
+
+## Repository配置
+
+Repository InterfaceはFeatureのDomain層へ配置する。
+
+```text
+features/{feature}/domain/repositories/
+```
+
+Repository実装はFeatureのData層へ配置する。
+
+```text
+features/{feature}/data/repositories/
+```
+
+必要に応じてMapperとData Sourceを次へ配置する。
+
+```text
+features/{feature}/data/mappers/
+features/{feature}/data/data_sources/
+```
+
+Repository InterfaceはRiverpod、Drift、Flutterへ依存しない。
+
+Repository実装はDomain Entityを返し、Drift Data ClassやPersistence ModelをDomainへ漏らさない。
+
+------------------------------------------------------------------------
+
+## Entity / Model / DTOの境界
+
+次の型は責務を分ける。
+
+-   Domain Entity
+-   Value Object
+-   Drift Data Class
+-   Persistence Model
+-   Application DTO
+-   Form Model
+-   View State
+-   API Model
+-   Export Model
+
+異なるレイヤーの型は原則として共用せず、境界でMapperを使用する。
+
+ただし、意味と責務が完全に同一であり、既存設計で共用が正式に認められた型まで機械的に複製しない。
+
+血圧記録では、Domain EntityとDrift Rowを分離する。
+
+------------------------------------------------------------------------
+
+## UIローカル状態の基準
+
+WidgetローカルState候補:
+
+-   FocusNode
+-   TextEditingControllerのWidgetライフサイクル管理
+-   AnimationController
+-   TabController
+-   一時的な開閉状態
+-   画面内だけで完結し、破棄して問題ない状態
+
+Riverpod候補:
+
+-   複数Widgetで共有する選択状態
+-   保存状態
+-   DB監視結果
+-   ThemeMode
+-   Router
+-   破棄されると問題になる入力Draft
+-   Feature Controllerの状態
+
+すべての状態をProvider化しない。
+
+------------------------------------------------------------------------
+
+## Feature間連携
+
+Feature AからFeature Bの次へ直接依存しない。
+
+-   presentation
+-   data
+-   private Provider
+-   private Mapper
+-   Screen / Widget
+
+Feature間共有が必要な場合は、次の公開境界を使用する。
+
+-   Domain Contract
+-   Repository Interface
+-   Application Query / UseCase
+-   App Service
+-   Shared Kernel
+-   明示的な公開モデル
+
+公開境界を作らず、Feature内部を直接importしない。
+
+MVP時点で不要なEvent Busや複雑なMediatorは導入しない。
+
+------------------------------------------------------------------------
+
+## core / shared / design_system境界
+
+coreは技術的・横断的Infrastructureを扱う。
+
+-   Error / Result基盤
+-   Logging基盤
+-   Database基盤
+-   Storage基盤
+-   Environment
+-   Clock / UUID
+-   Notification基盤
+-   Export基盤
+
+coreへFeature固有Domain Rule、Feature固有UseCase、Screen、Feature固有Widget、Feature固有Repository Interfaceを置かない。
+
+sharedは複数Featureで共有される意味的な型・処理・UIを扱う。
+
+-   共通Formatter
+-   共通Validation
+-   DateRangeなどの共有Value
+-   業務的な横断Widget
+
+sharedへ、とりあえず再利用しそうなコード、単一Featureだけで使うコード、Design Token、App Theme、Database Infrastructureを置かない。
+
+sharedを雑多フォルダにしないため、複数Featureで実利用が確認されてから移動を検討する。
+
+design_systemはDesign Token、ThemeExtension、見た目と操作性を統一する汎用Componentを扱う。
+
+design_systemは業務データやFeature Providerへ依存しない。
+
+------------------------------------------------------------------------
+
+## Navigation境界
+
+GoRouter依存はpresentation層とapp/routerに限定する。
+
+domain、application、dataはRouteを知らない。
+
+ControllerはBuildContextを保持せず、context.goやcontext.pushを呼ばない。
+
+保存成功などはState、Result、UI EventとしてScreenへ通知し、ScreenがGoRouterを使って遷移する。
+
+Application ResultにRoute名やPathを含めない。
+
+------------------------------------------------------------------------
+
+## Error / Result境界
+
+P3-07で具体的なResult型を定義する。
+
+domain:
+
+-   Validation Error
+-   Domain Error
+
+application:
+
+-   成功・失敗をResultとして表現
+-   Domain ErrorをApplication境界へ変換
+
+data:
+
+-   Drift / Storage / External Service ExceptionをDomainまたはApplicationで扱える失敗へ変換
+
+presentation:
+
+-   AsyncValue
+-   View State
+-   ユーザー向けMessage
+-   Validation表示
+
+router:
+
+-   未知Path
+-   Route構造
+-   parameter形式
+
+------------------------------------------------------------------------
+
+## Logging境界
+
+P3-08で具体的なLogging基盤を定義する。
+
+-   domainはLogging基盤へ依存しない
+-   data層は技術的な失敗を必要な範囲で記録可能
+-   application / controllerは操作単位のログを記録可能
+-   UI表示文言をそのままログへ流さない
+-   血圧値、脈拍、メモ、個人情報、AI Prompt全文をログへ記録しない
+-   DebugとProductionの出力方針はP3-08で定義する
+
+------------------------------------------------------------------------
+
+## Drift境界
+
+P3-09 / P3-10で具体的なDrift構成を定義する。
+
+-   Database本体はcore/database/
+-   Table / DAOの配置はDrift設計タスクで正式決定する
+-   Feature data層がRepository実装を通じてDatabaseへ接続する
+-   Drift Data Classをdomainへ漏らさない
+-   MapperでDomain Entityへ変換する
+-   継続監視はStreamProvider候補とする
+-   Transaction境界はapplicationまたはRepository実装で調整する
+-   Migrationはcore/databaseの責務とする
 
 ------------------------------------------------------------------------
 
@@ -752,7 +1055,7 @@ features/
    │  └─ services/
    │
    └─ data/
-      ├─ datasources/
+      ├─ data_sources/
       ├─ dtos/
       ├─ mappers/
       └─ repositories/
@@ -798,9 +1101,11 @@ Domain → Presentation
 
 Feature間連携は
 
-UseCase、Shared Domain、Event、
+UseCase、Shared Domain、公開Contract、
 
 またはRepository Contractを利用する。
+
+MVP時点で不要なEvent Busや複雑なMediatorは導入しない。
 
 ------------------------------------------------------------------------
 
@@ -850,12 +1155,28 @@ Color、Typography、Spacing、Design Token、Theme Extension、
 
 Riverpod。
 
-推奨
+P3-05では手書きProviderから開始する。
 
--   riverpod
 -   flutter_riverpod
+-   Provider
+-   FutureProvider
+-   StreamProvider
+-   NotifierProvider
+-   AsyncNotifierProvider
+-   ProviderScope
+-   ProviderContainer
+-   ProviderScope overrides
+
+P3-05では次を導入しない。
+
 -   riverpod_annotation
 -   riverpod_generator
+-   build_runner
+-   riverpod_lint
+-   custom_lint
+-   StateNotifierProviderの新規標準採用
+
+Code Generationは、Freezed、json_serializable、Drift生成などのコード生成基盤を導入する段階で再評価する。
 
 ------------------------------------------------------------------------
 
@@ -879,41 +1200,43 @@ Derived Provider
 
 ## Dependency Provider
 
-例
+Database、Storage、Clock、UUIDなどの技術基盤を注入する。
 
-dart
-@riverpod
-AppDatabase appDatabase(Ref ref) {
-  final database = AppDatabase();
-  ref.onDispose(database.close);
-  return database;
-}
+配置は責務に近いcore配下を基本とする。
+
+例:
+
+-   core/database
+-   core/storage
+-   core/time
 
 
 ------------------------------------------------------------------------
 
 ## Repository Provider
 
-dart
-@riverpod
-BloodPressureRepository bloodPressureRepository(Ref ref) {
-  return DriftBloodPressureRepository(
-    ref.watch(appDatabaseProvider),
-  );
-}
+FeatureのRepository InterfaceへRepository実装を接続する。
+
+配置はFeature固有の場合、次を基本とする。
+
+```text
+features/{feature}/data/providers/
+```
+
+Repository Providerをappやcoreへ集中させない。
 
 
 ------------------------------------------------------------------------
 
 ## UseCase Provider
 
-dart
-@riverpod
-CreateBloodPressureRecordUseCase createRecordUseCase(Ref ref) {
-  return CreateBloodPressureRecordUseCase(
-    ref.watch(bloodPressureRepositoryProvider),
-  );
-}
+UseCaseへRepositoryやApplication Serviceを注入する。
+
+配置はFeature固有の場合、次を基本とする。
+
+```text
+features/{feature}/application/providers/
+```
 
 
 ------------------------------------------------------------------------
@@ -922,44 +1245,34 @@ CreateBloodPressureRecordUseCase createRecordUseCase(Ref ref) {
 
 AsyncNotifierまたはNotifierを使用する。
 
-例
+Controller本体は次へ配置する。
 
-dart
-@riverpod
-class BloodPressureInputController
-    extends _$BloodPressureInputController {
-  @override
-  BloodPressureInputState build() {
-    return BloodPressureInputState.initial();
-  }
+```text
+features/{feature}/presentation/controllers/
+```
 
-  Future<void> save() async {
-    if (state.isSaving) {
-      return;
-    }
+Controllerを公開するProviderは次へ配置する。
 
-    state = state.copyWith(isSaving: true, error: null);
+```text
+features/{feature}/presentation/providers/
+```
 
-    final result = await ref
-        .read(createRecordUseCaseProvider)
-        .execute(state.toCommand());
+Controllerの責務:
 
-    result.when(
-      success: (_) {
-        state = state.copyWith(
-          isSaving: false,
-          isSaved: true,
-        );
-      },
-      failure: (error) {
-        state = state.copyWith(
-          isSaving: false,
-          error: error,
-        );
-      },
-    );
-  }
-}
+-   UI状態
+-   UseCase呼び出し
+-   loading / data / failure状態の調整
+-   UIへ返すResultまたはEvent
+
+Controllerで行わないこと:
+
+-   BuildContextの保持
+-   context.go / context.push
+-   Drift DAOの直接操作
+-   ThemeやWidgetの生成
+-   Domain Ruleの独自実装
+
+pure Dart Application ServiceやUseCaseはapplication層へ置く。
 
 
 ------------------------------------------------------------------------
@@ -1005,7 +1318,11 @@ Feature単位
 
 Screen単位の一時Stateは
 
-StatefulWidgetまたはHookを許可する。
+StatefulWidgetなどのWidgetローカルStateを許可する。
+
+すべての状態をProvider化しない。
+
+Provider用フォルダは、実Providerが必要になった時点で作成する。
 
 ------------------------------------------------------------------------
 
@@ -1020,6 +1337,8 @@ AutoDisposeを使用する。
 入力中データを失うと困る場合は
 
 keepAliveまたはDraft保存を検討する。
+
+P3-05ではRiverpod Code Generationを使わないため、lifecycleはProvider定義時に明示する。
 
 ------------------------------------------------------------------------
 
@@ -1218,7 +1537,7 @@ statistics
 
 settings
 
-recordInput
+recordNew
 
 recordDetail
 
@@ -1242,7 +1561,7 @@ extraで渡すことへ依存しない。
 例
 
 
-/records/:recordId
+/record/:recordId
 
 
 画面側で
@@ -2080,11 +2399,14 @@ Design System Widgetへ
 
 使用候補
 
--   riverpod_generator
 -   freezed
 -   json_serializable
 -   drift_dev
 -   build_runner
+
+P3-05ではriverpod_annotation / riverpod_generatorを導入しない。
+
+Riverpod Code Generationは、Freezed、json_serializable、Driftなどのコード生成基盤をまとめて導入する段階で再評価する。
 
 Generated File
 
@@ -2108,7 +2430,11 @@ CIで
 
 flutter_lintsを基準に
 
-custom_lintを追加する。
+必要に応じてcustom_lintを追加する。
+
+P3-05ではriverpod_lint / custom_lintを導入しない。
+
+これらはP3-12 CI基盤または専用Lint整備タスクで再評価する。
 
 推奨
 
@@ -2176,17 +2502,23 @@ custom_lintを追加する。
 
 
 test/
-├─ unit/
-├─ widget/
-├─ golden/
-├─ fixtures/
-├─ fakes/
+├─ app/
+├─ core/
+├─ design_system/
+├─ features/
+│  └─ {feature}/
+│     ├─ domain/
+│     ├─ application/
+│     ├─ data/
+│     └─ presentation/
 └─ helpers/
 
 integration_test/
 
 
-Feature構造へ合わせる方法も許可する。
+lib構成と対応させる。
+
+空のtestフォルダを先に大量作成しない。
 
 ------------------------------------------------------------------------
 
