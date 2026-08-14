@@ -32,9 +32,9 @@ SC020
 
 同じ測定機会で2回・3回と測定する利用方法にも対応し、
 
-平均値、最終測定値、任意選択などの集約方法を
+平均値をデフォルト代表値として扱い、必要に応じて個別測定を代表値に選択できることを
 
-ユーザーの設定に応じて扱えることを設計目標とする。
+設計目標とする。
 
 ------------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ SC020
 
 1回目、2回目、3回目の値を続けて入力し、
 
-平均値または採用する値を選びたい。
+平均値または採用する個別測定値を選びたい。
 
 ### 補足情報
 
@@ -322,9 +322,9 @@ F009で脈拍入力が無効の場合は非表示。
 
 1回目。
 
-集約方法
+代表値
 
-F107またはF009の設定値。
+Averageをデフォルトとする。
 
 ------------------------------------------------------------------------
 
@@ -367,12 +367,11 @@ Record Confirmation
     ↓
 測定値一覧を確認
     ↓
-集約方法を確認
-    ├─ 平均
-    ├─ 最終測定値
-    ├─ 最低値
-    ├─ 最高値
-    └─ 任意選択
+Averageを確認
+    ↓
+代表値を選択
+    ├─ Average（Default）
+    └─ Individual Measurement（1回目、2回目、3回目...）
     ↓
 保存
 ```
@@ -420,7 +419,7 @@ medicationStatus
 
 measurementIndex
 
-aggregationMethod
+representativeSelectionMethod
 
 isSelected
 
@@ -444,9 +443,11 @@ updatedAt
 
 個別データとして保持する。
 
-集約結果
+代表値
 
 Home、Graph、Statisticsで使用する代表値として保持する。
+
+代表値に選ばれなかったIndividual Measurementsも削除せず保持する。
 
 保存時刻
 
@@ -588,7 +589,7 @@ AIは
 -   タグ候補
 -   入力項目の説明
 -   エラー内容の分かりやすい説明
--   複数回測定の集約方法説明
+-   複数回測定の代表値選択説明
 
 AI提案は
 
@@ -616,7 +617,7 @@ RecordConfirmationScreen
 -   MeasurementValueCard
 -   ContinueMeasurementButton
 -   MeasurementList
--   AggregationMethodSelector
+-   RepresentativeValueSelector
 -   MemoField
 -   TagSelector
 -   InputErrorMessage
@@ -655,7 +656,7 @@ measurementSessionProvider
 
 measurementListProvider
 
-aggregationMethodProvider
+representativeSelectionProvider
 
 inputValidationProvider
 
@@ -688,7 +689,7 @@ InputState
 -   memo
 -   tags
 -   measurements
--   aggregationMethod
+-   representativeSelectionMethod
 -   validationErrors
 -   isDirty
 
@@ -733,7 +734,7 @@ InputState
 -   単回測定を保存できる
 -   2回測定を保存できる
 -   3回測定を保存できる
--   集約方法を選択できる
+-   代表値を選択できる
 -   保存後にHomeへ戻れる
 -   履歴編集後にRecord Detailへ戻れる
 
@@ -789,9 +790,9 @@ UI
 
 □ 平均値を代表値として選択できる
 
-□ 最終測定値を代表値として選択できる
-
 □ 任意の測定値を代表値として選択できる
+
+□ 代表値に選ばれなかった個別測定値も保存できる
 
 □ 入力エラーを該当項目の近くに表示できる
 

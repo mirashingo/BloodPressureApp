@@ -71,7 +71,7 @@ Recording Flowは、血圧記録を開始し、保存するまでの流れであ
 | 1 | Home | 血圧記録のPrimary Actionを選択する |
 | 2 | Blood Pressure Input | SYS、DIA、Pulse、測定日時、メモなどを入力する |
 | 3 | Multiple Measurement | 必要な場合のみ複数回測定を追加する |
-| 4 | Record Confirmation | 入力内容、集約結果、保存内容を確認する |
+| 4 | Record Confirmation | 入力内容、代表値、保存内容を確認する |
 | 5 | 保存 | 記録を保存する |
 | 6 | Home | 通常の保存完了後はHomeへ戻る |
 
@@ -147,7 +147,7 @@ Settings配下の基本導線:
 | Settings Area | 主な移動先 | 内容 |
 |---|---|---|
 | Display | Display Settings | Theme、文字サイズ、ボタンサイズ、数値表示など |
-| Recording | Recording Settings | 脈拍入力、時間帯分類、複数回測定の扱いなど |
+| Recording | Recording Settings | 脈拍入力、時間帯分類、保存前確認など |
 | Reminder | Reminder Settings / Reminder Edit | 通知時刻、曜日、有効状態など |
 | Export | Export Settings / PDF Preview | PDF / CSV出力、出力条件、Preview |
 | Backup | Backup Settings / Restore Preview | Backup作成、Restore確認 |
@@ -259,4 +259,3 @@ Exception Flowは、通常利用から外れる状態でユーザーを迷わせ
 | Primary Action表現 | 未決定 | Home内Primary Button、FAB、Navigation Bar中央ボタンのどれを採用するか |
 | タブごとのNavigation Stack | 未決定 | タブ移動時のStack保持方針をどうするか |
 | Tablet Navigation | 未決定 | Navigation RailなどLarge Screen向け構造を採用するか |
-

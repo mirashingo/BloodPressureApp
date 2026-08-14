@@ -275,8 +275,10 @@ AIは診断、治療提案、薬の変更提案を行いません。
 - 複数の測定値を1つの測定セッションとして保存
 - 全測定値の保存
 - 平均値の自動計算
-- 採用する測定値の選択
-- グラフ・統計で使用する値の設定
+- 平均値をデフォルト代表値として扱う
+- 必要に応じた個別測定値の代表値選択
+- Measurement Session、Individual Measurements、Representative Value、Representative Valueの選択方法の保持
+- グラフ・統計で使用する代表値の保持
 
 ---
 

@@ -64,7 +64,6 @@ F001
 
 -   最高血圧（SYS）
 -   最低血圧（DIA）
--   脈拍
 
 自動入力
 
@@ -72,6 +71,7 @@ F001
 
 任意
 
+-   脈拍
 -   メモ
 -   タグ
 -   朝・昼・夜区分
@@ -128,6 +128,44 @@ timePeriod
 createdAt
 
 updatedAt
+
+------------------------------------------------------------------------
+
+## 複数回測定
+
+同一測定機会に複数回の血圧測定を行った場合は、1つのMeasurement Sessionとして扱う。
+
+各Individual Measurementは、次を持つ。
+
+-   最高血圧（SYS）
+-   最低血圧（DIA）
+-   脈拍（任意）
+
+保存時は、Representative Valueだけでなく、すべてのIndividual Measurementを保持する。
+
+Representative ValueのデフォルトはAverageとする。Averageは、同一Measurement Session内の複数回測定された値から算出する。
+
+ユーザーはSCR-021 Multiple Measurement上で、Averageではなく任意のIndividual MeasurementをRepresentative Valueとして選択できる。
+
+選択可能なRepresentative Valueは次のとおり。
+
+-   Average（Default）
+-   Individual Measurement（1回目、2回目、3回目...）
+
+Last、Lowestは独立したAggregation Methodとして提供しない。
+
+Representative Valueの選択方法はSettingsには持たせない。毎回SCR-021でAverageをデフォルト選択状態として表示し、必要な場合だけユーザーがIndividual Measurementへ変更する。
+
+ユーザーがIndividual MeasurementをRepresentative Valueとして選択した場合でも、他のIndividual Measurementsを削除せず保存する。
+
+保存後も、次の関係を保持できる仕様とする。
+
+-   Measurement Session
+-   Individual Measurements
+-   Representative Value
+-   Representative Valueの選択方法
+
+Averageの具体的な丸めRuleは、既存の正本で確定していないため、後続設計で決定する。
 
 ------------------------------------------------------------------------
 

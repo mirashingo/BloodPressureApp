@@ -114,7 +114,7 @@ Settingsは、利用者の使い方に合わせてアプリ情報を調整する
 | 情報カテゴリ | 役割 |
 |---|---|
 | Display | テーマ、文字サイズ、ボタンサイズ、数値表示サイズを管理する |
-| Recording | 脈拍入力、時間帯判定、複数回測定の集約方法を管理する |
+| Recording | 脈拍入力、時間帯判定、保存前確認などの記録方法を管理する |
 | Reminder | 測定通知を管理する |
 | AI | AI機能の有効化、説明、同意を管理する |
 | Data / Backup | Export、Backup、Restore、データ削除を管理する |
@@ -138,15 +138,18 @@ Recording
 │  │  └─ Tags
 │  │
 │  └─ Multiple Measurement
-│     ├─ Measurement 1
-│     ├─ Measurement 2
-│     ├─ Measurement 3
-│     ├─ Aggregation Method
-│     └─ Selected / Representative Value
+│     ├─ Measurement Session
+│     │  ├─ Individual Measurement 1
+│     │  ├─ Individual Measurement 2
+│     │  └─ Individual Measurement 3...
+│     ├─ Average
+│     └─ Representative Selection
+│        ├─ Average (Default)
+│        └─ Individual Measurement
 │
 ├─ Confirmation
 │  ├─ Input Summary
-│  ├─ Aggregation Result
+│  ├─ Representative Value
 │  └─ Save Decision
 │
 ├─ Detail
@@ -162,6 +165,8 @@ Recording
 ```
 
 この構造は情報の分類であり、画面遷移や保存処理の詳細を定義するものではない。
+
+Multiple Measurementでは、AverageをデフォルトのRepresentative Valueとして扱う。ユーザーがIndividual MeasurementをRepresentative Valueとして選択した場合でも、他のIndividual MeasurementsはMeasurement Session内の情報として保持する。
 
 ## 6. Historical Information Structure
 
@@ -194,7 +199,6 @@ Settings
 │  ├─ Blood Pressure Unit
 │  ├─ Pulse Input
 │  ├─ Time Period Policy
-│  ├─ Multiple Measurement Aggregation
 │  └─ Confirm Before Save
 │
 ├─ Reminder
@@ -384,7 +388,7 @@ MVP範囲は`docs/01_Requirements/FeatureIndex.md`を正本とする。
 |---|---|---|
 | F010 | 測定継続状況 | Home、Statisticsの補助情報 |
 | F012 | 記録検索・絞り込み | Historyの探索補助 |
-| F107 | 複数回測定の集約 | RecordingのMultiple Measurement構造 |
+| F107 | 複数回測定の集約 | RecordingのMultiple Measurement構造。平均値をデフォルト代表値とし、必要に応じて個別測定を代表値として選択する |
 
 F107はRecording Featureの情報構造と強く関係するが、FeatureIndex上はMVP判断が必要な機能として扱う。
 
@@ -435,3 +439,4 @@ Flutter
 | AI SummaryのFeature ID | FeatureIndex.mdではAI傾向要約はF102、SCREEN_CONTEXT.mdの依存機能ではF201 AI Summaryと記載されている一方、FeatureIndex.mdのF201はBluetooth血圧計連携である。 | 本ドキュメントではAI Summaryに新しいFeature IDを割り当てない。Feature ID統一は別タスクで確認する。 |
 | AI SummaryのEntry Point | SCREEN_CONTEXT.mdではHome、Graph、Statistics、ExportからのEntryが示されているが、MVPでの採用範囲は確定していない。 | Optional AIとして扱い、MVP必須情報構造には含めない。 |
 | Tablet時Navigation | Navigation.mdでは将来拡張としてNavigation Rail等が示されているが、Phase 3.5時点のIAでは詳細を確定しない。 | 後続のNavigation FlowまたはResponsive設計で検討する。 |
+| Averageの丸めRule | Multiple MeasurementのAverageについて、具体的な丸めRuleは既存の正本で確定していない。 | 後続のRequirementまたはScreen Specificationで決定する。 |

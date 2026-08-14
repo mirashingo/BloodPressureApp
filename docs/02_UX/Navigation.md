@@ -549,7 +549,7 @@ Blood Pressure Input
     ↓
 Blood Pressure Input
     ↓
-集約確認
+代表値確認
     ↓
 保存完了
     ↓

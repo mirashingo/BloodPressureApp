@@ -112,7 +112,6 @@ SYSとDIAの変化を
 -   朝表示
 -   昼表示
 -   夜表示
--   代表値表示方法
 
 主要操作
 
@@ -309,7 +308,7 @@ X軸
 
 Pulse
 
-F009の設定に応じて表示する。
+Pulseが存在する場合に表示対象とする。
 
 時間帯
 
@@ -363,32 +362,36 @@ Pulseが未入力の記録は
 
 ## 集約ルール
 
+Graphの基本データは、F107でMeasurement Sessionごとに決定されたRepresentative Valueとする。
+
+Graph Display Aggregationは期間表示のための表示処理であり、保存済みRepresentative Valueを変更しない。Individual Measurementsも変更・削除しない。
+
 ### 個別表示
 
-各測定記録の代表値を表示する。
+表示可能な粒度では、各Measurement SessionのRepresentative Valueを使用する。
 
 ### 日別
 
-同一日の記録から
+同じ表示Bucket内に複数のMeasurement Sessionが存在する場合は、各Measurement SessionのRepresentative Valueを元に表示用平均値を算出する。
 
--   平均
--   最終記録
--   最低値
--   任意設定
+例
 
-のいずれかを使用する。
+```text
+朝 Session A → Representative Value
+夜 Session B → Representative Value
+    ↓
+日別集約表示ではSession AとSession BのRepresentative Valueから表示用日平均を算出する
+```
 
-初期値
-
-平均。
+Graph上でユーザーにLast、Lowest、任意Aggregation Methodを選択させない。
 
 ### 週別
 
-日別代表値を週単位で平均する。
+日単位または対象BucketのRepresentative Value群を、表示上必要な粒度へ平均する。
 
 ### 月別
 
-日別代表値を月単位で平均する。
+日単位または対象BucketのRepresentative Value群を、表示上必要な粒度へ平均する。
 
 ### 複数回測定
 
@@ -397,6 +400,8 @@ F107で決定した代表値を使用する。
 各測定値は
 
 Record Detailで確認する。
+
+具体的な平均計算・丸めRuleは、既存の正本で確定していないため、後続設計で決定する。
 
 ------------------------------------------------------------------------
 
@@ -439,7 +444,7 @@ F011の保存値を使用する。
 -   Pulse
 -   朝・昼・夜区分
 -   測定回数
--   集約方法
+-   代表値の選択方法
 
 ### 詳細遷移
 
@@ -498,7 +503,7 @@ pulse
 
 timePeriod
 
-aggregationMethod
+representativeValue
 
 measurementCount
 
@@ -702,7 +707,7 @@ graphSeriesVisibilityProvider
 
 graphTimePeriodFilterProvider
 
-graphAggregationProvider
+graphDisplayDataProvider
 
 selectedGraphPointProvider
 ```
@@ -729,7 +734,7 @@ GraphState
 -   endDate
 -   visibleSeries
 -   selectedTimePeriods
--   aggregationMethod
+-   displayAggregationLevel
 -   selectedPoint
 -   summary
 
@@ -743,7 +748,6 @@ GraphState
 -   任意期間
 -   表示系列
 -   時間帯フィルター
--   集約方法
 -   選択データ点
 
 アプリ再起動後は

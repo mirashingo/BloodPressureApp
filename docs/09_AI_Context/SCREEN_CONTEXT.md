@@ -593,7 +593,7 @@ Draftを画面Stateとして管理する。
 -   Memo
 -   Tags
 -   Measurements
--   Aggregation Method
+-   Representative Selection
 
 ------------------------------------------------------------------------
 
@@ -1173,18 +1173,18 @@ Back時に
 
 複数回の値を入力し、
 
-代表値の決定方法を選択する。
+今回の記録に使用する代表値を決定する。
 
 ------------------------------------------------------------------------
 
 ## 主要要素
 
 -   Measurement List
+-   Average
+-   Representative Value Selection
 -   Add Measurement
 -   Remove Measurement
 -   Measurement Number
--   Aggregation Method
--   Representative Preview
 -   Continue・Save
 
 ------------------------------------------------------------------------
@@ -1201,14 +1201,16 @@ Back時に
 
 ------------------------------------------------------------------------
 
-## Aggregation Method
+## Representative Value Selection
 
 -   Average
--   Last
--   Lowest
--   User Selected
+-   Individual Measurement
 
-説明文を表示する。
+AverageをDefaultとする。
+
+Individual Measurementは1回目、2回目、3回目...から選択可能にする。
+
+Last、Lowestは独立したAggregation Methodとして提供しない。
 
 ------------------------------------------------------------------------
 
@@ -1217,6 +1219,8 @@ Back時に
 保存前に
 
 代表値を確認可能にする。
+
+代表値だけでなく、すべてのIndividual Measurementsを保持する。
 
 ------------------------------------------------------------------------
 
@@ -1257,7 +1261,8 @@ Back時に
 -   Time
 -   Time Period
 -   Measurement Count
--   Aggregation Method
+-   Representative Value
+-   Representative Selection
 -   Memo
 -   Tags
 -   Save
@@ -1376,7 +1381,7 @@ Lazy List、Paging、
 -   Date・Time
 -   Time Period
 -   Individual Measurements
--   Aggregation Method
+-   Representative Selection
 -   Memo
 -   Tags
 -   Edit
@@ -1820,7 +1825,6 @@ About
 -   High Contrast
 -   Reduce Motion
 -   Time Period Rule
--   Aggregation Method
 -   Reminder
 -   AI Enable
 -   Backup
@@ -1986,7 +1990,7 @@ AIによる振り返り補助を提供する。
 -   History Filter
 -   History Sort
 -   Date Range
--   Aggregation Method
+-   Representative Value Selection
 -   Tag Selection
 -   Export Field Selection
 
@@ -2118,7 +2122,7 @@ Input画面では
 
 -   Settings
 -   Time Period Policy
--   Aggregation Policy
+-   Representative Selection
 -   Tags
 
 ## History

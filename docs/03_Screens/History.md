@@ -499,7 +499,7 @@ tags
 
 measurementCount
 
-aggregationMethod
+representativeSelectionMethod
 
 isEdited
 
@@ -525,7 +525,7 @@ F011の保存値を表示する。
 
 複数回測定
 
-F107の集約結果を表示する。
+F107で決定した代表値を表示する。
 
 編集済み
 

@@ -58,7 +58,7 @@ SC014
 
 脈拍入力、朝・昼・夜の時間帯、
 
-複数回測定の集約方法を設定したい。
+保存前確認を設定したい。
 
 ### 通知
 
@@ -113,7 +113,7 @@ SC014
 -   記録設定
 -   脈拍入力
 -   朝・昼・夜の判定時刻
--   複数回測定の集約方法
+-   保存前確認
 
 通知カテゴリ
 
@@ -161,7 +161,7 @@ Settings List
     ├─ 記録
     │   ├─ 記録設定
     │   ├─ 時間帯設定
-    │   └─ 複数回測定設定
+    │   └─ 保存前確認
     │
     ├─ 通知
     │   └─ リマインダー
@@ -269,7 +269,6 @@ SC061 Recording Settings。
 -   血圧単位
 -   脈拍入力
 -   朝・昼・夜判定時刻
--   複数回測定の集約方法
 -   小数点処理
 -   入力初期値
 -   保存前確認
@@ -371,10 +370,6 @@ SC063 About。
 
 F011の初期値。
 
-複数回測定の集約方法
-
-平均。
-
 保存前確認
 
 有効。
@@ -411,7 +406,6 @@ AI機能
 保存後反映
 
 -   時間帯判定
--   複数回測定集約
 -   リマインダー
 -   バックアップ設定
 -   AI利用同意
@@ -497,15 +491,6 @@ Pulse入力欄を非表示にする。
 -   夜開始
 
 各時刻が重複・逆転しないようにする。
-
-### 複数回測定
-
-集約方法
-
--   平均
--   最終測定値
--   最低値
--   任意選択
 
 ### 保存前確認
 
@@ -665,8 +650,6 @@ daytimeStartTime
 
 eveningStartTime
 
-aggregationMethod
-
 confirmBeforeSave
 
 reminderEnabled
@@ -701,10 +684,6 @@ updatedAt
 -   重複不可
 
 文字サイズ
-
-定義済み選択肢のみ。
-
-集約方法
 
 定義済み選択肢のみ。
 
@@ -792,7 +771,6 @@ AboutScreen
 -   ThemeSelector
 -   TextSizeSelector
 -   TimePeriodSettings
--   AggregationMethodSelector
 -   PermissionStatusTile
 -   ResetSettingsDialog
 -   DeleteAllDataDialog
@@ -959,7 +937,6 @@ Home、Input、History、Graph、Statisticsへ反映する。
 -   ボタンサイズを変更できる
 -   脈拍入力を変更できる
 -   時間帯設定を変更できる
--   集約方法を変更できる
 -   AI機能を有効・無効にできる
 -   設定を初期化できる
 -   全データを削除できる
@@ -969,7 +946,6 @@ Home、Input、History、Graph、Statisticsへ反映する。
 -   表示設定が全画面へ反映される
 -   記録設定がInputへ反映される
 -   時間帯設定がHome・History・Graphへ反映される
--   集約方法がHome・Graph・Statisticsへ反映される
 -   リマインダー変更がHomeへ反映される
 
 異常系
@@ -1025,8 +1001,6 @@ UI
 □ 脈拍入力を有効・無効にできる
 
 □ 朝・昼・夜の判定時刻を変更できる
-
-□ 複数回測定の集約方法を変更できる
 
 □ 保存前確認を有効・無効にできる
 

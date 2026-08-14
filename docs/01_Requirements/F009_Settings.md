@@ -48,7 +48,7 @@ F009
 
 私は複数回血圧を測定する利用者として、
 
-平均値や採用値の決め方を
+脈拍入力や朝・昼・夜の時間帯を
 
 自分の測定方法に合わせて設定したい。
 
@@ -82,7 +82,6 @@ F009
 -   血圧単位
 -   脈拍入力
 -   朝・昼・夜の判定時刻
--   複数回測定の集約方法
 -   小数点処理
 -   入力初期値
 
@@ -168,8 +167,6 @@ morningStartTime
 daytimeStartTime
 
 eveningStartTime
-
-aggregationMethod
 
 roundingMethod
 
@@ -355,8 +352,6 @@ UI
 
 □ 朝・昼・夜の判定時刻を変更できる
 
-□ 複数回測定の集約方法を変更できる
-
 □ リマインダー設定へ移動できる
 
 □ データ出力設定へ移動できる
@@ -392,8 +387,6 @@ F007 Export
 F008 Backup
 
 F011 Time Period Classification
-
-F107 Multiple Measurement Aggregation
 
 ------------------------------------------------------------------------
 

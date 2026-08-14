@@ -178,13 +178,17 @@ Pulse入力
     ↓
 必要に応じて3回目を入力
     ↓
-集約方法を確認
-    ├─ 平均
-    ├─ 最低値
-    ├─ 最終測定値
-    └─ 任意選択
+測定値一覧と平均値を確認
+    ↓
+代表値を選択
+    ├─ Average（Default）
+    └─ Individual Measurement（1回目、2回目、3回目...）
     ↓
 保存
+
+保存時はRepresentative Valueだけでなく、すべてのIndividual Measurementを保持する。
+
+Averageの具体的な丸めRuleは後続設計で確認する。
 
 
 ## 例外フロー
@@ -660,7 +664,6 @@ Settings
 Recording Settings
     ├─ 脈拍入力
     ├─ 朝・昼・夜の判定時刻
-    ├─ 集約方法
     └─ 小数点処理
     ↓
 保存
