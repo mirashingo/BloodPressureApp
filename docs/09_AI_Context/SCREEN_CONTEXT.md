@@ -2072,6 +2072,19 @@ AI利用、Backup、
 
 ------------------------------------------------------------------------
 
+## Implementation Status
+
+-   Category: Optional AI / Future Screen
+-   Status: Future / Optional
+-   Current Mid Fidelity Scope: Out of Scope
+-   Current Flutter MVP Implementation Scope: Out of Scope
+-   Screen ID: Reserved
+-   このScreenを削除・再採番しない
+-   AI機能が未実装または無効でも、Home / Recording / History / Graph / Statistics / Export / Backup / Restore / Settingsは完結する
+-   将来実装時にFigma、Flutter Screen、Route、State、Safety・Fallbackを追加・具体化する
+
+------------------------------------------------------------------------
+
 ## 目的
 
 記録Dataを元に

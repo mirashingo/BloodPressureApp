@@ -248,6 +248,8 @@ Main Navigationに含まれない補助領域は、意味に応じて次のよ�
 
 AI Summaryは任意機能であり、主要な記録、確認、出力、バックアップの完了に必須ではない。
 
+`SCR-100 AI Summary`は将来実装予定のOptional AI / Future Screenであり、Screen IDは予約済みとする。現在のMid FidelityおよびFlutter MVP実装範囲には含めず、AI機能が未実装または無効でも主要機能は完結する。
+
 ## 9. Screen Category Map
 
 Screen IDは`docs/09_AI_Context/SCREEN_CONTEXT.md`を正本として整理する。
