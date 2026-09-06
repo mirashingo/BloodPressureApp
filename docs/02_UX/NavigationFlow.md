@@ -58,7 +58,7 @@ Primary Navigationの基本ルール:
 -   Statisticsは期間集計確認の起点である。
 -   Settingsは補助機能と設定変更の起点である。
 
-Blood Pressure Input、Record Detail、PDF Preview、Restore Preview、各種詳細設定画面では、Primary Navigationの表示や扱いは後続のScreen Specificationで具体化する。
+Blood Pressure Input、Record Detail、PDF Preview、Restore、各種詳細設定画面では、Primary Navigationの表示や扱いは後続のScreen Specificationで具体化する。
 
 ## 5. Recording Flow
 
@@ -150,7 +150,7 @@ Settings配下の基本導線:
 | Recording | Recording Settings | 脈拍入力、時間帯分類、保存前確認など |
 | Reminder | Reminder Settings / Reminder Edit | 通知時刻、曜日、有効状態など |
 | Export | Export Settings / PDF Preview | PDF / CSV出力、出力条件、Preview |
-| Backup | Backup Settings / Restore Preview | Backup作成、Restore確認 |
+| Backup | Backup Settings / Restore | Backup作成、Restore確認 |
 | Privacy | Privacy Settings | Privacy説明、データ利用、同意、AI利用など |
 | About | About | Version、利用規約、ライセンス、問い合わせなど |
 
@@ -205,7 +205,7 @@ Cross Navigationは、Primary Navigationや補助画面をまたぐ移動であ�
 | 削除キャンセル | Record Detailへ留まる |
 | 削除完了 | Historyへ戻る |
 | PDF Previewから戻る | Export Settingsへ戻る |
-| Restore Previewから戻る | Backup Settingsへ戻る |
+| Restoreから戻る | Backup Settingsへ戻る |
 | 詳細設定から戻る | Settingsへ戻る |
 
 Androidの戻る操作、iOSの戻る操作、スワイプバックの詳細は、Screen SpecificationとFlutter実装タスクで具体化する。

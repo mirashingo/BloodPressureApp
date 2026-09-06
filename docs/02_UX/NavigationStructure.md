@@ -82,7 +82,7 @@ Secondary Navigationは、Main Navigationではない補助領域への入口で
 | Reminder | 継続支援 | 測定通知、通知時刻、通知状態 |
 | Export | データ活用 | PDF / CSV出力、出力条件、Preview |
 | Backup | データ保護 | Backup作成、Restore入口、Backup状態 |
-| Restore | データ復元 | Backup File確認、Restore Preview、復元確認 |
+| Restore | データ復元 | Backup File確認、Restore、復元確認 |
 | Privacy | 安心・同意 | Privacy説明、データ利用、AI利用、Backup注意事項 |
 | Display | 表示調整 | Theme、文字サイズ、数値表示、ボタンサイズ |
 | Recording | 記録方法 | 脈拍入力、時間帯分類、複数回測定の扱い |

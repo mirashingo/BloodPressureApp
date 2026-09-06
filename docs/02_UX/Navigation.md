@@ -63,7 +63,7 @@ App
 ├─ Export Settings
 ├─ PDF Preview
 ├─ Backup Settings
-├─ Restore Preview
+├─ Restore
 ├─ Display Settings
 ├─ Recording Settings
 ├─ Privacy Settings
@@ -107,7 +107,7 @@ App
 確認またはプレビューを目的とする画面。
 
 -   PDF Preview
--   Restore Preview
+-   Restore
 -   Record Edit
 -   Export Result
 
@@ -140,7 +140,7 @@ MVPでは次の5項目とする。
 -   Blood Pressure Input
 -   Record Detail
 -   PDF Preview
--   Restore Preview
+-   Restore
 -   各種詳細設定画面
 
 ## 選択状態
