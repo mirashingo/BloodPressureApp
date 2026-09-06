@@ -239,8 +239,8 @@ Main Navigationに含まれない補助領域は、意味に応じて次のよ�
 | Entry / System | Splash | 起動時の初期化と初期状態判定 |
 | Entry / System | Onboarding | アプリ価値、基本操作、Privacy、任意Permissionの説明 |
 | Entry / System | Initial Settings | 初回の基本設定 |
-| Supporting Feature | Reminder | 測定習慣を支援する通知情報 |
-| Data Management | Export | PDF / CSVとして記録を活用する情報 |
+| Supporting Feature | Reminder Settings | 測定習慣を支援する通知情報 |
+| Data Management | Export Settings | PDF / CSVとして記録を活用する情報 |
 | Data Management | Backup | 記録と設定を保護する情報 |
 | Data Management | Restore | 復元前確認と復元対象情報 |
 | Privacy | Privacy | AI、Backup、外部送信、同意を利用者向けに説明する情報 |
@@ -258,6 +258,7 @@ Screen IDは`docs/09_AI_Context/SCREEN_CONTEXT.md`を正本として整理する
 |---|---|
 | SCR-001 | Splash |
 | SCR-002 | Onboarding |
+| SCR-003 | Initial Settings |
 
 ### Core
 
@@ -283,11 +284,16 @@ Screen IDは`docs/09_AI_Context/SCREEN_CONTEXT.md`を正本として整理する
 
 | Screen ID | Screen |
 |---|---|
-| SCR-060 | Reminder |
-| SCR-070 | Export |
+| SCR-060 | Reminder Settings |
+| SCR-061 | Reminder Edit |
+| SCR-070 | Export Settings |
+| SCR-071 | PDF Preview |
 | SCR-080 | Backup |
 | SCR-081 | Restore |
 | SCR-091 | Privacy |
+| SCR-092 | Display Settings |
+| SCR-093 | Recording Settings |
+| SCR-094 | About |
 | SCR-100 | AI Summary |
 
 ## 10. Cross-Feature Information Relationships

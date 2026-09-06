@@ -6,11 +6,11 @@ Version: 1.0
 
 ------------------------------------------------------------------------
 
-# SC014 設定（Settings）
+# SCR-090 設定（Settings）
 
 ## 画面ID
 
-SC014
+SCR-090
 
 ------------------------------------------------------------------------
 
@@ -87,8 +87,8 @@ SC014
 -   Recording Settings
 -   Reminder Settings
 -   Export Settings
--   Backup Settings
--   Privacy Settings
+-   Backup
+-   Privacy
 -   About
 -   Home
 -   Initial Settings
@@ -246,7 +246,7 @@ Bottom Navigation
 
 遷移先
 
-SC060 Display Settings。
+SCR-092 Display Settings。
 
 設定項目
 
@@ -262,7 +262,7 @@ SC060 Display Settings。
 
 遷移先
 
-SC061 Recording Settings。
+SCR-093 Recording Settings。
 
 設定項目
 
@@ -277,7 +277,7 @@ SC061 Recording Settings。
 
 遷移先
 
-SC030 Reminder Settings。
+SCR-060 Reminder Settings。
 
 設定項目
 
@@ -292,7 +292,7 @@ SC030 Reminder Settings。
 
 遷移先
 
-SC040 Export Settings。
+SCR-070 Export Settings。
 
 設定項目
 
@@ -306,7 +306,7 @@ SC040 Export Settings。
 
 遷移先
 
-SC050 Backup Settings。
+SCR-080 Backup。
 
 設定項目
 
@@ -320,7 +320,7 @@ SC050 Backup Settings。
 
 遷移先
 
-SC062 Privacy Settings。
+SCR-091 Privacy。
 
 設定項目
 
@@ -335,7 +335,7 @@ SC062 Privacy Settings。
 
 遷移先
 
-SC063 About。
+SCR-094 About。
 
 設定項目
 

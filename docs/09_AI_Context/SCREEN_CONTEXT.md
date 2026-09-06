@@ -62,6 +62,7 @@ AI Contextである。
 
 -   Splash
 -   Onboarding
+-   Initial Settings
 -   Home
 -   Blood Pressure Input
 -   Multiple Measurement
@@ -71,12 +72,17 @@ AI Contextである。
 -   Record Edit
 -   Graph
 -   Statistics
--   Reminder
--   Export
+-   Reminder Settings
+-   Reminder Edit
+-   Export Settings
+-   PDF Preview
 -   Backup
 -   Restore
 -   Settings
 -   Privacy
+-   Display Settings
+-   Recording Settings
+-   About
 -   AI Summary
 -   Dialog
 -   Bottom Sheet
@@ -197,16 +203,18 @@ AI画面の場合
 
 一意のScreen IDを持つ。
 
-推奨例
+正式Screen ID
 
 
 SCR-001 Splash
 
 SCR-002 Onboarding
 
+SCR-003 Initial Settings
+
 SCR-010 Home
 
-SCR-020 Input
+SCR-020 Blood Pressure Input
 
 SCR-021 Multiple Measurement
 
@@ -222,9 +230,13 @@ SCR-040 Graph
 
 SCR-050 Statistics
 
-SCR-060 Reminder
+SCR-060 Reminder Settings
 
-SCR-070 Export
+SCR-061 Reminder Edit
+
+SCR-070 Export Settings
+
+SCR-071 PDF Preview
 
 SCR-080 Backup
 
@@ -234,8 +246,77 @@ SCR-090 Settings
 
 SCR-091 Privacy
 
+SCR-092 Display Settings
+
+SCR-093 Recording Settings
+
+SCR-094 About
+
 SCR-100 AI Summary
 
+
+# Supporting UI ID方針
+
+Supporting UIはScreen IDとは別体系として管理する。
+
+## Dialogs
+
+-   DG001 Unsaved Changes
+-   DG002 Delete Record
+-   DG003 Delete Reminder
+-   DG005 Save Error
+-   DG006 Export Error
+-   DG007 Restore Confirmation
+-   DG009 Delete All Data
+
+## Permission Prompts
+
+-   PP001 Notification Permission
+
+## Bottom Sheets
+
+-   BS001 History Filter
+-   BS002 History Sort
+-   BS003 Date Range
+-   BS004 Export Field Selection
+-   BS005 Tag Selection
+
+## Empty States
+
+-   ES001 Home - No Records
+-   ES002 History - No Records
+-   ES003 History - Filter Empty
+-   ES004 Graph - No Data
+-   ES005 Statistics - No Data
+-   ES006 Reminder - No Reminders
+-   ES007 Export - No Records
+
+## Error States
+
+-   ER001 Splash - Fatal Error
+-   ER002 Home - Load Error
+-   ER003 History - Load Error
+-   ER004 Record Detail - Not Found
+-   ER005 Graph - Load Error
+-   ER006 Statistics - Load Error
+-   ER007 Restore - Invalid File
+
+## Loading & Processing States
+
+-   LP001 Generic Loading
+-   LP010 Record Saving
+-   LP011 Export Generating
+-   LP012 Backup Creating
+-   LP013 Restore Validating
+-   LP014 Restore Processing
+
+## Feedback
+
+-   FB001 Snackbar
+
+Supporting UIのIDをSCR系へ変更せず、欠番も詰めない。
+
+------------------------------------------------------------------------
 
 Screen IDは
 
@@ -915,6 +996,14 @@ Data保護状況を示す。
 
 ------------------------------------------------------------------------
 
+## Figma Frame Name
+
+-   SCR-002 Onboarding - 01
+-   SCR-002 Onboarding - 02
+-   SCR-002 Onboarding - 03
+
+------------------------------------------------------------------------
+
 ## 目的
 
 Appの価値、
@@ -963,6 +1052,25 @@ Notification Permissionは
 AI同意は
 
 AI使用時に分離して取得可能にする。
+
+------------------------------------------------------------------------
+
+# SCR-003 Initial Settings
+
+------------------------------------------------------------------------
+
+## 目的
+
+文字サイズ、通知、時間帯区分などの基本設定を初回起動時に行う。
+
+## 主要要素
+
+-   Text Size
+-   Button Size
+-   Pulse Input
+-   Time Period Rule
+-   Notification Settings
+-   Complete
 
 ------------------------------------------------------------------------
 
@@ -1576,7 +1684,7 @@ Graph、Exportと
 
 ------------------------------------------------------------------------
 
-# SCR-060 Reminder
+# SCR-060 Reminder Settings
 
 ------------------------------------------------------------------------
 
@@ -1626,7 +1734,28 @@ Settingsへの導線を提供する。
 
 ------------------------------------------------------------------------
 
-# SCR-070 Export
+# SCR-061 Reminder Edit
+
+------------------------------------------------------------------------
+
+## 目的
+
+通知時刻、曜日、区分、有効状態を設定する。
+
+## 主要要素
+
+-   Time
+-   Weekday
+-   Time Period
+-   Title
+-   Message
+-   Enable
+-   Save
+-   Delete
+
+------------------------------------------------------------------------
+
+# SCR-070 Export Settings
 
 ------------------------------------------------------------------------
 
@@ -1676,6 +1805,24 @@ AIなしで
 共有前に
 
 内容を確認できるようにする。
+
+------------------------------------------------------------------------
+
+# SCR-071 PDF Preview
+
+------------------------------------------------------------------------
+
+## 目的
+
+PDFを保存・共有する前に内容とレイアウトを確認する。
+
+## 主要要素
+
+-   PDF Preview
+-   Page Navigation
+-   Save
+-   Share
+-   Back to Edit
 
 ------------------------------------------------------------------------
 
@@ -1888,6 +2035,36 @@ AI利用、Backup、
 利用者向けの
 
 理解しやすい要約を表示する。
+
+------------------------------------------------------------------------
+
+# SCR-092 Display Settings
+
+------------------------------------------------------------------------
+
+## 目的
+
+テーマ、文字サイズ、ボタンサイズ、数値表示サイズなどを変更する。
+
+------------------------------------------------------------------------
+
+# SCR-093 Recording Settings
+
+------------------------------------------------------------------------
+
+## 目的
+
+血圧単位、脈拍入力、時間帯区分、保存前確認などの記録方法を変更する。
+
+------------------------------------------------------------------------
+
+# SCR-094 About
+
+------------------------------------------------------------------------
+
+## 目的
+
+アプリバージョン、利用規約、プライバシーポリシー、問い合わせ先を表示する。
 
 ------------------------------------------------------------------------
 

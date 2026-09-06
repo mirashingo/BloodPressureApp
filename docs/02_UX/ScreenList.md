@@ -45,15 +45,15 @@ BloodPressureAppで使用するすべての画面を一覧化し、
 画面IDは次の形式とする。
 
 
-SC + 3桁の連番
+SCR- + 3桁の連番
 
 
 例
 
 
-SC001
-SC002
-SC003
+SCR-001
+SCR-002
+SCR-003
 
 
 ダイアログは次の形式とする。
@@ -117,14 +117,14 @@ BS002
 
 -   Export Settings
 -   PDF Preview
--   Backup Settings
--   Restore Preview
+-   Backup
+-   Restore
 
 ## 詳細設定
 
 -   Display Settings
 -   Recording Settings
--   Privacy Settings
+-   Privacy
 -   About
 
 ------------------------------------------------------------------------
@@ -133,37 +133,37 @@ BS002
 
 | 画面ID | 画面名 | Flutter名 | 階層 | MVP |
 |---|---|---|---|---|
-| SC001 | スプラッシュ | SplashScreen | 起動 | 必須 |
-| SC002 | オンボーディング | OnboardingScreen | 起動 | 必須 |
-| SC003 | 初期設定 | InitialSettingsScreen | 起動 | 必須 |
-| SC010 | ホーム | HomeScreen | 第1階層 | 必須 |
-| SC011 | 履歴 | HistoryScreen | 第1階層 | 必須 |
-| SC012 | グラフ | GraphScreen | 第1階層 | 必須 |
-| SC013 | 統計 | StatisticsScreen | 第1階層 | 必須 |
-| SC014 | 設定 | SettingsScreen | 第1階層 | 必須 |
-| SC020 | 血圧入力 | BloodPressureInputScreen | 第2階層 | 必須 |
-| SC021 | 複数回測定 | MultipleMeasurementScreen | 第2階層 | 必須 |
-| SC022 | 記録確認 | RecordConfirmationScreen | 第3階層 | 必須 |
-| SC023 | 記録詳細 | RecordDetailScreen | 第2階層 | 必須 |
-| SC024 | 記録編集 | RecordEditScreen | 第3階層 | 必須 |
-| SC030 | リマインダー設定 | ReminderSettingsScreen | 第2階層 | 必須 |
-| SC031 | リマインダー編集 | ReminderEditScreen | 第3階層 | 必須 |
-| SC040 | データ出力 | ExportSettingsScreen | 第2階層 | 必須 |
-| SC041 | PDFプレビュー | PdfPreviewScreen | 第3階層 | 必須 |
-| SC050 | バックアップ | BackupSettingsScreen | 第2階層 | 重要 |
-| SC051 | 復元プレビュー | RestorePreviewScreen | 第3階層 | 重要 |
-| SC060 | 表示設定 | DisplaySettingsScreen | 第2階層 | 必須 |
-| SC061 | 記録設定 | RecordingSettingsScreen | 第2階層 | 必須 |
-| SC062 | プライバシー設定 | PrivacySettingsScreen | 第2階層 | 必須 |
-| SC063 | アプリ情報 | AboutScreen | 第2階層 | 必須 |
+| SCR-001 | スプラッシュ | SplashScreen | 起動 | 必須 |
+| SCR-002 | オンボーディング | OnboardingScreen | 起動 | 必須 |
+| SCR-003 | 初期設定 | InitialSettingsScreen | 起動 | 必須 |
+| SCR-010 | ホーム | HomeScreen | 第1階層 | 必須 |
+| SCR-020 | 血圧入力 | BloodPressureInputScreen | 第2階層 | 必須 |
+| SCR-021 | 複数回測定 | MultipleMeasurementScreen | 第2階層 | 必須 |
+| SCR-022 | 記録確認 | RecordConfirmationScreen | 第3階層 | 必須 |
+| SCR-030 | 履歴 | HistoryScreen | 第1階層 | 必須 |
+| SCR-031 | 記録詳細 | RecordDetailScreen | 第2階層 | 必須 |
+| SCR-032 | 記録編集 | RecordEditScreen | 第3階層 | 必須 |
+| SCR-040 | グラフ | GraphScreen | 第1階層 | 必須 |
+| SCR-050 | 統計 | StatisticsScreen | 第1階層 | 必須 |
+| SCR-060 | リマインダー設定 | ReminderSettingsScreen | 第2階層 | 必須 |
+| SCR-061 | リマインダー編集 | ReminderEditScreen | 第3階層 | 必須 |
+| SCR-070 | データ出力設定 | ExportSettingsScreen | 第2階層 | 必須 |
+| SCR-071 | PDFプレビュー | PdfPreviewScreen | 第3階層 | 必須 |
+| SCR-080 | バックアップ | BackupSettingsScreen | 第2階層 | 重要 |
+| SCR-081 | 復元 | RestorePreviewScreen | 第3階層 | 重要 |
+| SCR-090 | 設定 | SettingsScreen | 第1階層 | 必須 |
+| SCR-091 | プライバシー | PrivacySettingsScreen | 第2階層 | 必須 |
+| SCR-092 | 表示設定 | DisplaySettingsScreen | 第2階層 | 必須 |
+| SCR-093 | 記録設定 | RecordingSettingsScreen | 第2階層 | 必須 |
+| SCR-094 | アプリ情報 | AboutScreen | 第2階層 | 必須 |
 
 ------------------------------------------------------------------------
 
-# SC001 スプラッシュ
+# SCR-001 スプラッシュ
 
 ## 画面ID
 
-SC001
+SCR-001
 
 ## 画面名
 
@@ -195,8 +195,8 @@ SplashScreen
 
 ## 遷移先
 
--   SC002 Onboarding
--   SC010 Home
+-   SCR-002 Onboarding
+-   SCR-010 Home
 -   生体認証ダイアログ
 
 ## 関連機能
@@ -210,11 +210,11 @@ SplashScreen
 
 ------------------------------------------------------------------------
 
-# SC002 オンボーディング
+# SCR-002 オンボーディング
 
 ## 画面ID
 
-SC002
+SCR-002
 
 ## 画面名
 
@@ -223,6 +223,12 @@ SC002
 ## Flutter名
 
 OnboardingScreen
+
+## Figma Frame Name
+
+-   SCR-002 Onboarding - 01
+-   SCR-002 Onboarding - 02
+-   SCR-002 Onboarding - 03
 
 ## 目的
 
@@ -241,12 +247,12 @@ OnboardingScreen
 
 ## 遷移元
 
--   SC001 Splash
+-   SCR-001 Splash
 
 ## 遷移先
 
--   SC003 Initial Settings
--   SC010 Home
+-   SCR-003 Initial Settings
+-   SCR-010 Home
 
 ## 関連機能
 
@@ -260,11 +266,11 @@ OnboardingScreen
 
 ------------------------------------------------------------------------
 
-# SC003 初期設定
+# SCR-003 初期設定
 
 ## 画面ID
 
-SC003
+SCR-003
 
 ## 画面名
 
@@ -291,11 +297,11 @@ InitialSettingsScreen
 
 ## 遷移元
 
--   SC002 Onboarding
+-   SCR-002 Onboarding
 
 ## 遷移先
 
--   SC010 Home
+-   SCR-010 Home
 -   通知権限ダイアログ
 
 ## 関連機能
@@ -310,11 +316,11 @@ InitialSettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC010 ホーム
+# SCR-010 ホーム
 
 ## 画面ID
 
-SC010
+SCR-010
 
 ## 画面名
 
@@ -342,20 +348,20 @@ HomeScreen
 
 ## 遷移元
 
--   SC001 Splash
--   SC002 Onboarding
--   SC003 Initial Settings
+-   SCR-001 Splash
+-   SCR-002 Onboarding
+-   SCR-003 Initial Settings
 -   保存完了
 -   下部ナビゲーション
 
 ## 遷移先
 
--   SC020 Blood Pressure Input
--   SC011 History
--   SC012 Graph
--   SC013 Statistics
--   SC030 Reminder Settings
--   SC014 Settings
+-   SCR-020 Blood Pressure Input
+-   SCR-030 History
+-   SCR-040 Graph
+-   SCR-050 Statistics
+-   SCR-060 Reminder Settings
+-   SCR-090 Settings
 
 ## 関連機能
 
@@ -371,11 +377,11 @@ HomeScreen
 
 ------------------------------------------------------------------------
 
-# SC011 履歴
+# SCR-030 履歴
 
 ## 画面ID
 
-SC011
+SCR-030
 
 ## 画面名
 
@@ -406,15 +412,15 @@ HistoryScreen
 
 ## 遷移元
 
--   SC010 Home
+-   SCR-010 Home
 -   下部ナビゲーション
--   SC023 Record Detail
+-   SCR-031 Record Detail
 
 ## 遷移先
 
--   SC023 Record Detail
--   SC020 Blood Pressure Input
--   SC040 Export Settings
+-   SCR-031 Record Detail
+-   SCR-020 Blood Pressure Input
+-   SCR-070 Export Settings
 
 ## 関連機能
 
@@ -429,11 +435,11 @@ HistoryScreen
 
 ------------------------------------------------------------------------
 
-# SC012 グラフ
+# SCR-040 グラフ
 
 ## 画面ID
 
-SC012
+SCR-040
 
 ## 画面名
 
@@ -464,16 +470,16 @@ SYS、DIA、Pulseの推移を
 
 ## 遷移元
 
--   SC010 Home
--   SC011 History
--   SC013 Statistics
+-   SCR-010 Home
+-   SCR-030 History
+-   SCR-050 Statistics
 -   下部ナビゲーション
 
 ## 遷移先
 
--   SC023 Record Detail
--   SC020 Blood Pressure Input
--   SC040 Export Settings
+-   SCR-031 Record Detail
+-   SCR-020 Blood Pressure Input
+-   SCR-070 Export Settings
 
 ## 関連機能
 
@@ -489,11 +495,11 @@ SYS、DIA、Pulseの推移を
 
 ------------------------------------------------------------------------
 
-# SC013 統計
+# SCR-050 統計
 
 ## 画面ID
 
-SC013
+SCR-050
 
 ## 画面名
 
@@ -525,15 +531,15 @@ StatisticsScreen
 
 ## 遷移元
 
--   SC010 Home
--   SC012 Graph
+-   SCR-010 Home
+-   SCR-040 Graph
 -   下部ナビゲーション
 
 ## 遷移先
 
--   SC012 Graph
--   SC040 Export Settings
--   SC020 Blood Pressure Input
+-   SCR-040 Graph
+-   SCR-070 Export Settings
+-   SCR-020 Blood Pressure Input
 
 ## 関連機能
 
@@ -549,11 +555,11 @@ StatisticsScreen
 
 ------------------------------------------------------------------------
 
-# SC014 設定
+# SCR-090 設定
 
 ## 画面ID
 
-SC014
+SCR-090
 
 ## 画面名
 
@@ -582,19 +588,19 @@ SettingsScreen
 
 ## 遷移元
 
--   SC010 Home
+-   SCR-010 Home
 -   下部ナビゲーション
 -   各設定詳細画面
 
 ## 遷移先
 
--   SC060 Display Settings
--   SC061 Recording Settings
--   SC030 Reminder Settings
--   SC040 Export Settings
--   SC050 Backup Settings
--   SC062 Privacy Settings
--   SC063 About
+-   SCR-092 Display Settings
+-   SCR-093 Recording Settings
+-   SCR-060 Reminder Settings
+-   SCR-070 Export Settings
+-   SCR-080 Backup
+-   SCR-091 Privacy
+-   SCR-094 About
 
 ## 関連機能
 
@@ -609,11 +615,11 @@ SettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC020 血圧入力
+# SCR-020 血圧入力
 
 ## 画面ID
 
-SC020
+SCR-020
 
 ## 画面名
 
@@ -643,19 +649,19 @@ SYS、DIA、Pulse、測定日時、
 
 ## 遷移元
 
--   SC010 Home
--   SC011 History
--   SC012 Graph
--   SC013 Statistics
+-   SCR-010 Home
+-   SCR-030 History
+-   SCR-040 Graph
+-   SCR-050 Statistics
 -   通知タップ
--   SC023 Record Detail
+-   SCR-031 Record Detail
 
 ## 遷移先
 
--   SC021 Multiple Measurement
--   SC022 Record Confirmation
--   SC010 Home
--   SC023 Record Detail
+-   SCR-021 Multiple Measurement
+-   SCR-022 Record Confirmation
+-   SCR-010 Home
+-   SCR-031 Record Detail
 
 ## 関連機能
 
@@ -669,11 +675,11 @@ SYS、DIA、Pulse、測定日時、
 
 ------------------------------------------------------------------------
 
-# SC021 複数回測定
+# SCR-021 複数回測定
 
 ## 画面ID
 
-SC021
+SCR-021
 
 ## 画面名
 
@@ -702,12 +708,12 @@ MultipleMeasurementScreen
 
 ## 遷移元
 
--   SC020 Blood Pressure Input
+-   SCR-020 Blood Pressure Input
 
 ## 遷移先
 
--   SC020 Blood Pressure Input
--   SC022 Record Confirmation
+-   SCR-020 Blood Pressure Input
+-   SCR-022 Record Confirmation
 
 ## 関連機能
 
@@ -720,11 +726,11 @@ MultipleMeasurementScreen
 
 ------------------------------------------------------------------------
 
-# SC022 記録確認
+# SCR-022 記録確認
 
 ## 画面ID
 
-SC022
+SCR-022
 
 ## 画面名
 
@@ -754,14 +760,14 @@ RecordConfirmationScreen
 
 ## 遷移元
 
--   SC020 Blood Pressure Input
--   SC021 Multiple Measurement
+-   SCR-020 Blood Pressure Input
+-   SCR-021 Multiple Measurement
 
 ## 遷移先
 
--   SC020 Blood Pressure Input
--   SC010 Home
--   SC023 Record Detail
+-   SCR-020 Blood Pressure Input
+-   SCR-010 Home
+-   SCR-031 Record Detail
 
 ## 関連機能
 
@@ -774,11 +780,11 @@ RecordConfirmationScreen
 
 ------------------------------------------------------------------------
 
-# SC023 記録詳細
+# SCR-031 記録詳細
 
 ## 画面ID
 
-SC023
+SCR-031
 
 ## 画面名
 
@@ -808,14 +814,14 @@ RecordDetailScreen
 
 ## 遷移元
 
--   SC011 History
--   SC012 Graph
+-   SCR-030 History
+-   SCR-040 Graph
 -   Deep Link
 
 ## 遷移先
 
--   SC024 Record Edit
--   SC011 History
+-   SCR-032 Record Edit
+-   SCR-030 History
 -   削除確認ダイアログ
 
 ## 関連機能
@@ -830,11 +836,11 @@ RecordDetailScreen
 
 ------------------------------------------------------------------------
 
-# SC024 記録編集
+# SCR-032 記録編集
 
 ## 画面ID
 
-SC024
+SCR-032
 
 ## 画面名
 
@@ -859,11 +865,11 @@ RecordEditScreen
 
 ## 遷移元
 
--   SC023 Record Detail
+-   SCR-031 Record Detail
 
 ## 遷移先
 
--   SC023 Record Detail
+-   SCR-031 Record Detail
 -   未保存確認ダイアログ
 
 ## 関連機能
@@ -877,11 +883,11 @@ RecordEditScreen
 
 ------------------------------------------------------------------------
 
-# SC030 リマインダー設定
+# SCR-060 リマインダー設定
 
 ## 画面ID
 
-SC030
+SCR-060
 
 ## 画面名
 
@@ -909,15 +915,15 @@ ReminderSettingsScreen
 
 ## 遷移元
 
--   SC010 Home
--   SC014 Settings
+-   SCR-010 Home
+-   SCR-090 Settings
 -   Deep Link
 
 ## 遷移先
 
--   SC031 Reminder Edit
+-   SCR-061 Reminder Edit
 -   通知権限ダイアログ
--   SC014 Settings
+-   SCR-090 Settings
 
 ## 関連機能
 
@@ -931,11 +937,11 @@ ReminderSettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC031 リマインダー編集
+# SCR-061 リマインダー編集
 
 ## 画面ID
 
-SC031
+SCR-061
 
 ## 画面名
 
@@ -962,11 +968,11 @@ ReminderEditScreen
 
 ## 遷移元
 
--   SC030 Reminder Settings
+-   SCR-060 Reminder Settings
 
 ## 遷移先
 
--   SC030 Reminder Settings
+-   SCR-060 Reminder Settings
 -   削除確認ダイアログ
 
 ## 関連機能
@@ -980,15 +986,15 @@ ReminderEditScreen
 
 ------------------------------------------------------------------------
 
-# SC040 データ出力
+# SCR-070 データ出力設定
 
 ## 画面ID
 
-SC040
+SCR-070
 
 ## 画面名
 
-データ出力
+データ出力設定
 
 ## Flutter名
 
@@ -1011,15 +1017,15 @@ PDFまたはCSVの形式、
 
 ## 遷移元
 
--   SC011 History
--   SC012 Graph
--   SC013 Statistics
--   SC014 Settings
+-   SCR-030 History
+-   SCR-040 Graph
+-   SCR-050 Statistics
+-   SCR-090 Settings
 -   Deep Link
 
 ## 遷移先
 
--   SC041 PDF Preview
+-   SCR-071 PDF Preview
 -   OS共有画面
 -   ファイル保存画面
 
@@ -1036,11 +1042,11 @@ PDFまたはCSVの形式、
 
 ------------------------------------------------------------------------
 
-# SC041 PDFプレビュー
+# SCR-071 PDFプレビュー
 
 ## 画面ID
 
-SC041
+SCR-071
 
 ## 画面名
 
@@ -1066,11 +1072,11 @@ PDFを保存・共有する前に
 
 ## 遷移元
 
--   SC040 Export Settings
+-   SCR-070 Export Settings
 
 ## 遷移先
 
--   SC040 Export Settings
+-   SCR-070 Export Settings
 -   OS共有画面
 -   ファイル保存画面
 
@@ -1084,11 +1090,11 @@ PDFを保存・共有する前に
 
 ------------------------------------------------------------------------
 
-# SC050 バックアップ
+# SCR-080 バックアップ
 
 ## 画面ID
 
-SC050
+SCR-080
 
 ## 画面名
 
@@ -1116,12 +1122,12 @@ BackupSettingsScreen
 
 ## 遷移元
 
--   SC014 Settings
+-   SCR-090 Settings
 -   Deep Link
 
 ## 遷移先
 
--   SC051 Restore Preview
+-   SCR-081 Restore
 -   OS共有画面
 -   ファイル選択画面
 
@@ -1136,15 +1142,15 @@ BackupSettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC051 復元プレビュー
+# SCR-081 復元
 
 ## 画面ID
 
-SC051
+SCR-081
 
 ## 画面名
 
-復元プレビュー
+復元
 
 ## Flutter名
 
@@ -1168,13 +1174,13 @@ RestorePreviewScreen
 
 ## 遷移元
 
--   SC050 Backup Settings
+-   SCR-080 Backup
 
 ## 遷移先
 
--   SC050 Backup Settings
+-   SCR-080 Backup
 -   復元確認ダイアログ
--   SC010 Home
+-   SCR-010 Home
 
 ## 関連機能
 
@@ -1186,11 +1192,11 @@ RestorePreviewScreen
 
 ------------------------------------------------------------------------
 
-# SC060 表示設定
+# SCR-092 表示設定
 
 ## 画面ID
 
-SC060
+SCR-092
 
 ## 画面名
 
@@ -1217,12 +1223,12 @@ DisplaySettingsScreen
 
 ## 遷移元
 
--   SC014 Settings
--   SC003 Initial Settings
+-   SCR-090 Settings
+-   SCR-003 Initial Settings
 
 ## 遷移先
 
--   SC014 Settings
+-   SCR-090 Settings
 -   設定初期化ダイアログ
 
 ## 関連機能
@@ -1236,11 +1242,11 @@ DisplaySettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC061 記録設定
+# SCR-093 記録設定
 
 ## 画面ID
 
-SC061
+SCR-093
 
 ## 画面名
 
@@ -1266,12 +1272,12 @@ RecordingSettingsScreen
 
 ## 遷移元
 
--   SC014 Settings
--   SC003 Initial Settings
+-   SCR-090 Settings
+-   SCR-003 Initial Settings
 
 ## 遷移先
 
--   SC014 Settings
+-   SCR-090 Settings
 -   時刻選択ダイアログ
 
 ## 関連機能
@@ -1287,15 +1293,15 @@ RecordingSettingsScreen
 
 ------------------------------------------------------------------------
 
-# SC062 プライバシー設定
+# SCR-091 プライバシー
 
 ## 画面ID
 
-SC062
+SCR-091
 
 ## 画面名
 
-プライバシー設定
+プライバシー
 
 ## Flutter名
 
@@ -1318,11 +1324,11 @@ AI機能、データ利用同意を管理する。
 
 ## 遷移元
 
--   SC014 Settings
+-   SCR-090 Settings
 
 ## 遷移先
 
--   SC014 Settings
+-   SCR-090 Settings
 -   生体認証ダイアログ
 -   プライバシーポリシー
 
@@ -1337,11 +1343,11 @@ AI機能、データ利用同意を管理する。
 
 ------------------------------------------------------------------------
 
-# SC063 アプリ情報
+# SCR-094 アプリ情報
 
 ## 画面ID
 
-SC063
+SCR-094
 
 ## 画面名
 
@@ -1368,11 +1374,11 @@ AboutScreen
 
 ## 遷移元
 
--   SC014 Settings
+-   SCR-090 Settings
 
 ## 遷移先
 
--   SC014 Settings
+-   SCR-090 Settings
 -   外部ブラウザ
 -   メールアプリ
 
@@ -1390,15 +1396,15 @@ AboutScreen
 
 | ダイアログID | 名称 | 用途 |
 |---|---|---|
-| DG001 | 未保存確認 | 入力内容を破棄して戻るか確認 |
-| DG002 | 記録削除確認 | 血圧記録の削除確認 |
-| DG003 | リマインダー削除確認 | リマインダーの削除確認 |
+| DG001 | Unsaved Changes | 入力内容を破棄して戻るか確認 |
+| DG002 | Delete Record | 血圧記録の削除確認 |
+| DG003 | Delete Reminder | リマインダーの削除確認 |
 | DG004 | 通知権限案内 | 通知権限の説明と設定誘導 |
-| DG005 | 保存失敗 | 記録保存失敗と再試行 |
-| DG006 | 出力失敗 | PDF・CSV生成失敗と再試行 |
-| DG007 | 復元確認 | バックアップ復元の最終確認 |
+| DG005 | Save Error | 記録保存失敗と再試行 |
+| DG006 | Export Error | PDF・CSV生成失敗と再試行 |
+| DG007 | Restore Confirmation | バックアップ復元の最終確認 |
 | DG008 | 設定初期化確認 | 設定を初期値へ戻す確認 |
-| DG009 | データ削除確認 | 全データ削除の確認 |
+| DG009 | Delete All Data | 全データ削除の確認 |
 | DG010 | 生体認証 | アプリロック解除 |
 
 ------------------------------------------------------------------------
@@ -1407,11 +1413,68 @@ AboutScreen
 
 | ボトムシートID | 名称 | 用途 |
 |---|---|---|
-| BS001 | 期間選択 | 日・週・月・年・任意期間の選択 |
-| BS002 | 履歴フィルター | 時間帯・タグ・期間の絞り込み |
-| BS003 | 代表値選択 | AverageまたはIndividual Measurementの選択 |
-| BS004 | 出力項目選択 | PDF・CSVへ含める項目の選択 |
-| BS005 | 共有方法選択 | 保存・共有操作の選択 |
+| BS001 | History Filter | 履歴の絞り込み |
+| BS002 | History Sort | 履歴の並び替え |
+| BS003 | Date Range | 期間の選択 |
+| BS004 | Export Field Selection | PDF・CSVへ含める項目の選択 |
+| BS005 | Tag Selection | タグの選択 |
+
+------------------------------------------------------------------------
+
+# Permission Prompt一覧
+
+| Permission Prompt ID | 名称 |
+|---|---|
+| PP001 | Notification Permission |
+
+------------------------------------------------------------------------
+
+# Empty State一覧
+
+| Empty State ID | 名称 |
+|---|---|
+| ES001 | Home - No Records |
+| ES002 | History - No Records |
+| ES003 | History - Filter Empty |
+| ES004 | Graph - No Data |
+| ES005 | Statistics - No Data |
+| ES006 | Reminder - No Reminders |
+| ES007 | Export - No Records |
+
+------------------------------------------------------------------------
+
+# Error State一覧
+
+| Error State ID | 名称 |
+|---|---|
+| ER001 | Splash - Fatal Error |
+| ER002 | Home - Load Error |
+| ER003 | History - Load Error |
+| ER004 | Record Detail - Not Found |
+| ER005 | Graph - Load Error |
+| ER006 | Statistics - Load Error |
+| ER007 | Restore - Invalid File |
+
+------------------------------------------------------------------------
+
+# Loading & Processing State一覧
+
+| Loading & Processing State ID | 名称 |
+|---|---|
+| LP001 | Generic Loading |
+| LP010 | Record Saving |
+| LP011 | Export Generating |
+| LP012 | Backup Creating |
+| LP013 | Restore Validating |
+| LP014 | Restore Processing |
+
+------------------------------------------------------------------------
+
+# Feedback一覧
+
+| Feedback ID | 名称 |
+|---|---|
+| FB001 | Snackbar |
 
 ------------------------------------------------------------------------
 

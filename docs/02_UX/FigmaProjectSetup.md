@@ -207,12 +207,15 @@ Sectionは情報領域または作業領域を表す。
 形式:
 
 ```text
+SCR-002 Onboarding - 01 / Mobile / Light
+SCR-002 Onboarding - 02 / Mobile / Light
+SCR-002 Onboarding - 03 / Mobile / Light
 SCR-010 / Home / Mobile / Light
 SCR-020 / Blood Pressure Input / Mobile / Light
 SCR-030 / History / Mobile / Empty
 ```
 
-Screen IDは`docs/09_AI_Context/SCREEN_CONTEXT.md`を暫定正本とする。Screen IDの表記揺れが解消されるまでは、Figma上でも`SCR-*`を優先候補とする。
+Screen IDは`docs/09_AI_Context/SCREEN_CONTEXT.md`を正本とし、Figma上では正式な`SCR-*`表記を使用する。
 
 ### Component
 
@@ -478,6 +481,6 @@ Figma作業では次を守る。
 | Illustration管理 | 未決定 | Empty StateやOnboarding用Illustrationを作るか |
 | Chart Component | 未決定 | Graph表現を独自Component化する範囲 |
 | FAB採用 | 未決定 | Primary ActionをFAB、Home内Button、Navigation Bar中央ボタンのどれで表現するか |
-| Screen ID表記揺れ | 未解消 | `SCR-*`と`SC*`の統一完了後にFrame名を調整する |
+| Screen ID表記揺れ | 解消済み | 正式な`SCR-*`表記でFrame名を管理する |
 | Dev Mode運用開始時期 | 未決定 | Wireframe後、High Fidelity後、Flutter実装前のどこでDev Pageを確定するか |
 
